@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "00B12406884F30713732A19DD0162B5FB085DDED",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3C4BDA014A049F14143F68407F280513A44F8C23" : 0,
+    "00B12406884F30713732A19DD0162B5FB085DDED" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3511B94B-71D3-4247-A498-49091EE493D2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3C4BDA014A049F14143F68407F280513A44F8C23" : "MPCF_Mutltistream_Test\/Submodules\/Thali_CordovaPlugin\/",
+    "00B12406884F30713732A19DD0162B5FB085DDED" : "MPCF_Mutltistream_Test\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MPCF_Multistream_test",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MPCF_Multistream_test\/MPCF_Multistream_test.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/baydet\/MPCF_Mutltistream_Test",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "00B12406884F30713732A19DD0162B5FB085DDED"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thaliproject\/Thali_CordovaPlugin\/",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C4BDA014A049F14143F68407F280513A44F8C23"
+    }
+  ]
+}

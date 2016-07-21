@@ -1,0 +1,4 @@
+[submodule "Submodules/Thali_CordovaPlugin"]
+	path = Submodules/Thali_CordovaPlugin
+	url = https://github.com/thaliproject/Thali_CordovaPlugin/
+	branch = vNext
