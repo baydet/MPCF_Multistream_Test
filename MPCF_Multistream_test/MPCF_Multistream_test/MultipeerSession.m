@@ -9,7 +9,6 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "MultipeerSession.h"
 #import "DataStream.h"
-#import "DataGenerators.h"
 
 @interface MultipeerSession () <MCSessionDelegate>
 @property(nonatomic, readwrite) MCSession *mcSession;
@@ -41,7 +40,7 @@
     for (int i = 0; i < _streamsCount; ++i)
     {
         NSString *name = [NSString stringWithFormat:@"output_stream#%d", i];
-        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId];;
+        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId];
     }
 }
 
@@ -90,7 +89,6 @@
         NSString *name = [NSString stringWithFormat:@"retranslated_%@", streamName];
         OutputDataStream *dataStream = [self createAndOpenOutputStreamWithName:name toPeer:peerID];
         dataStream.dataProvider = buffer;
-        buffer.delegate = dataStream;
         self.outputStreams[name] = dataStream;
     }
 }

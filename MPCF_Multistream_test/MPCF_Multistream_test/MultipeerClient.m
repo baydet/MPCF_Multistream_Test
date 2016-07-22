@@ -54,5 +54,10 @@
 
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@\n%@", _session.inputStreams.description, _session.outputStreams.description];
+}
+
 
 @end

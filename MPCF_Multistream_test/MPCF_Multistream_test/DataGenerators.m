@@ -26,7 +26,7 @@
     self = [super init];
     if (self)
     {
-        self.buffer = [NSMutableArray new];
+        self.buffer = [[NSMutableArray alloc] initWithCapacity:100000];
     }
 
     return self;
@@ -35,13 +35,14 @@
 
 - (NSData *)dataForStream:(DataStream *)stream
 {
-    return [self.buffer popObject];
+    while (self.buffer.count == 0);
+    id obj = [self.buffer popObject];
+    return obj;
 }
 
 - (void)stream:(DataStream *)stream hasData:(NSData *)data
 {
     [self.buffer pushObject:data];
-    [self.delegate generatorHasNewData:self];
 }
 
 @end

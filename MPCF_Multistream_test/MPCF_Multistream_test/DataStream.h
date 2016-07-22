@@ -13,11 +13,6 @@
 @class DataStream;
 @protocol DataProcessor;
 
-@protocol GeneratorDelegate
-- (void)generatorHasNewData:(id<DataStreamGenerator>)generator;
-@end
-
-
 @interface DataStream : NSObject
 
 @property(nonatomic, strong) NSStream *stream;
@@ -27,7 +22,7 @@
 
 @end
 
-@interface OutputDataStream : DataStream <GeneratorDelegate>
+@interface OutputDataStream : DataStream
 
 @property(nonatomic, strong) id<DataStreamGenerator>dataProvider;
 

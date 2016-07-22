@@ -120,15 +120,6 @@
     return self;
 }
 
-- (void)generatorHasNewData:(id <DataStreamGenerator>)generator
-{
-    NSLog(@"try");
-    if (self.outputStream.hasSpaceAvailable) {
-        [self performSelector:@selector(writeData) onThread:self.streamThread withObject:nil waitUntilDone:NO];
-    }
-}
-
-
 - (void)writeData {
     NSData *data = [self.dataProvider dataForStream:self];
     if (data == nil) {

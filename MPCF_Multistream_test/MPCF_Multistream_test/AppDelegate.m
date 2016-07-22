@@ -29,30 +29,33 @@
         _server = [[MultipeerServer alloc] init];
         [_server startAdvertise];
 
-        //for debugging
-        _label = [[UILabel alloc] initWithFrame:self.window.bounds];
-        [self.window addSubview:_label];
-
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(update) userInfo:nil repeats:YES];
 
     } else {
         _client = [[MultipeerClient alloc] init];
         [_client startBrowsing];
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClient) userInfo:nil repeats:YES];
     }
+
+    _label = [[UILabel alloc] initWithFrame:self.window.bounds];
+    [self.window addSubview:_label];
+    _label.numberOfLines = 0;
+    _label.font = [UIFont systemFontOfSize:8];
+
 
     return YES;
 }
 
 - (void)update
 {
-    [_label removeFromSuperview];
-    NSLog(@"_server.description = %@", _server.description);
-    [self.window addSubview:_label];
     _label.text = _server.description;
-    _label.numberOfLines = 0;
-    _label.font = [UIFont systemFontOfSize:8];
-    _label.frame = self.window.bounds;
-//    [self.window bringSubviewToFront:_label];
+    [self.window bringSubviewToFront:_label];
+}
+
+- (void)updateClient
+{
+    _label.text = _client.description;
+    [self.window bringSubviewToFront:_label];
 }
 
 @end
