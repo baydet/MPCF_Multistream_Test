@@ -7,15 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D34C67651D409F8700873DC6 /* MultipeerServer.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C67641D409F8700873DC6 /* MultipeerServer.m */; };
+		D34C67681D409F9D00873DC6 /* MultipeerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C67671D409F9D00873DC6 /* MultipeerClient.m */; };
+		D34C676B1D409FAB00873DC6 /* DataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C676A1D409FAB00873DC6 /* DataStream.m */; };
+		D34C676F1D40B07200873DC6 /* MultipeerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D34C676E1D40B07200873DC6 /* MultipeerSession.m */; };
 		D34EB4D11D3FB0AA0043F112 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D34EB4D01D3FB0AA0043F112 /* main.m */; };
 		D34EB4D41D3FB0AA0043F112 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D34EB4D31D3FB0AA0043F112 /* AppDelegate.m */; };
 		D34EB4D71D3FB0AA0043F112 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D34EB4D61D3FB0AA0043F112 /* ViewController.m */; };
 		D34EB4DA1D3FB0AA0043F112 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34EB4D81D3FB0AA0043F112 /* Main.storyboard */; };
 		D34EB4DC1D3FB0AA0043F112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34EB4DB1D3FB0AA0043F112 /* Assets.xcassets */; };
 		D34EB4DF1D3FB0AA0043F112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34EB4DD1D3FB0AA0043F112 /* LaunchScreen.storyboard */; };
+		D34EB4EB1D3FB60B0043F112 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34EB4EA1D3FB60B0043F112 /* MultipeerConnectivity.framework */; };
+		D3AAD0DF1D3FCFF700F22272 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AAD0DD1D3FCFF700F22272 /* SystemConfiguration.framework */; };
+		D3AAD0E01D3FCFF700F22272 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AAD0DE1D3FCFF700F22272 /* CFNetwork.framework */; };
+		FAADD590BAC22986689B5B24 /* MCPeerID+MPC.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADD9C91079B08EF7FF2009 /* MCPeerID+MPC.m */; };
+		FAADDA0733F80F61034C7192 /* StreamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADDE057184F93A2C98CA22 /* StreamManager.m */; };
+		FAADDCB9277982B7030D9A2A /* DataGenerators.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3A9ED0D657BC57BCC9A /* DataGenerators.m */; };
+		FAADDE85C037D7B1A220FB42 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADDA67AA6AD7CC219872BB /* NSMutableArray+Queue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D34C67631D409F8700873DC6 /* MultipeerServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerServer.h; sourceTree = "<group>"; };
+		D34C67641D409F8700873DC6 /* MultipeerServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerServer.m; sourceTree = "<group>"; };
+		D34C67661D409F9D00873DC6 /* MultipeerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerClient.h; sourceTree = "<group>"; };
+		D34C67671D409F9D00873DC6 /* MultipeerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerClient.m; sourceTree = "<group>"; };
+		D34C67691D409FAB00873DC6 /* DataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStream.h; sourceTree = "<group>"; };
+		D34C676A1D409FAB00873DC6 /* DataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStream.m; sourceTree = "<group>"; };
+		D34C676C1D40A00C00873DC6 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D34C676D1D40B07200873DC6 /* MultipeerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerSession.h; sourceTree = "<group>"; };
+		D34C676E1D40B07200873DC6 /* MultipeerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerSession.m; sourceTree = "<group>"; };
 		D34EB4CC1D3FB0AA0043F112 /* MPCF_Multistream_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MPCF_Multistream_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34EB4D01D3FB0AA0043F112 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D34EB4D21D3FB0AA0043F112 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +46,17 @@
 		D34EB4DB1D3FB0AA0043F112 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34EB4DE1D3FB0AA0043F112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34EB4E01D3FB0AA0043F112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D34EB4EA1D3FB60B0043F112 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		D3AAD0DD1D3FCFF700F22272 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D3AAD0DE1D3FCFF700F22272 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FAADD182025403B869D73370 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		FAADD3A9ED0D657BC57BCC9A /* DataGenerators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGenerators.m; sourceTree = "<group>"; };
+		FAADD729E9E147AD98A401A0 /* MCPeerID+MPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCPeerID+MPC.h"; sourceTree = "<group>"; };
+		FAADD798B7B9707822BFF8E1 /* DataGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGenerators.h; sourceTree = "<group>"; };
+		FAADD9C91079B08EF7FF2009 /* MCPeerID+MPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCPeerID+MPC.m"; sourceTree = "<group>"; };
+		FAADDA67AA6AD7CC219872BB /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		FAADDAB24D5AFCCD7673F8F7 /* StreamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamManager.h; sourceTree = "<group>"; };
+		FAADDE057184F93A2C98CA22 /* StreamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +64,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3AAD0E01D3FCFF700F22272 /* CFNetwork.framework in Frameworks */,
+				D3AAD0DF1D3FCFF700F22272 /* SystemConfiguration.framework in Frameworks */,
+				D34EB4EB1D3FB60B0043F112 /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +92,7 @@
 		D34EB4CE1D3FB0AA0043F112 /* MPCF_Multistream_test */ = {
 			isa = PBXGroup;
 			children = (
+				D3AAD0E11D3FD43700F22272 /* MPC */,
 				D34EB4D21D3FB0AA0043F112 /* AppDelegate.h */,
 				D34EB4D31D3FB0AA0043F112 /* AppDelegate.m */,
 				D34EB4D51D3FB0AA0043F112 /* ViewController.h */,
@@ -67,6 +102,9 @@
 				D34EB4DD1D3FB0AA0043F112 /* LaunchScreen.storyboard */,
 				D34EB4E01D3FB0AA0043F112 /* Info.plist */,
 				D34EB4CF1D3FB0AA0043F112 /* Supporting Files */,
+				D34EB4EA1D3FB60B0043F112 /* MultipeerConnectivity.framework */,
+				D3AAD0DD1D3FCFF700F22272 /* SystemConfiguration.framework */,
+				D3AAD0DE1D3FCFF700F22272 /* CFNetwork.framework */,
 			);
 			path = MPCF_Multistream_test;
 			sourceTree = "<group>";
@@ -77,6 +115,30 @@
 				D34EB4D01D3FB0AA0043F112 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3AAD0E11D3FD43700F22272 /* MPC */ = {
+			isa = PBXGroup;
+			children = (
+				D34C67631D409F8700873DC6 /* MultipeerServer.h */,
+				D34C67641D409F8700873DC6 /* MultipeerServer.m */,
+				D34C67661D409F9D00873DC6 /* MultipeerClient.h */,
+				D34C67671D409F9D00873DC6 /* MultipeerClient.m */,
+				D34C67691D409FAB00873DC6 /* DataStream.h */,
+				D34C676A1D409FAB00873DC6 /* DataStream.m */,
+				D34C676C1D40A00C00873DC6 /* Constants.h */,
+				FAADD9C91079B08EF7FF2009 /* MCPeerID+MPC.m */,
+				FAADD729E9E147AD98A401A0 /* MCPeerID+MPC.h */,
+				D34C676D1D40B07200873DC6 /* MultipeerSession.h */,
+				D34C676E1D40B07200873DC6 /* MultipeerSession.m */,
+				FAADDA67AA6AD7CC219872BB /* NSMutableArray+Queue.m */,
+				FAADD182025403B869D73370 /* NSMutableArray+Queue.h */,
+				FAADD3A9ED0D657BC57BCC9A /* DataGenerators.m */,
+				FAADD798B7B9707822BFF8E1 /* DataGenerators.h */,
+				FAADDE057184F93A2C98CA22 /* StreamManager.m */,
+				FAADDAB24D5AFCCD7673F8F7 /* StreamManager.h */,
+			);
+			name = MPC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,9 +211,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D34C676F1D40B07200873DC6 /* MultipeerSession.m in Sources */,
+				D34C67681D409F9D00873DC6 /* MultipeerClient.m in Sources */,
 				D34EB4D71D3FB0AA0043F112 /* ViewController.m in Sources */,
 				D34EB4D41D3FB0AA0043F112 /* AppDelegate.m in Sources */,
+				D34C676B1D409FAB00873DC6 /* DataStream.m in Sources */,
 				D34EB4D11D3FB0AA0043F112 /* main.m in Sources */,
+				D34C67651D409F8700873DC6 /* MultipeerServer.m in Sources */,
+				FAADD590BAC22986689B5B24 /* MCPeerID+MPC.m in Sources */,
+				FAADDE85C037D7B1A220FB42 /* NSMutableArray+Queue.m in Sources */,
+				FAADDCB9277982B7030D9A2A /* DataGenerators.m in Sources */,
+				FAADDA0733F80F61034C7192 /* StreamManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -253,7 +323,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -302,6 +372,7 @@
 				D34EB4E51D3FB0AA0043F112 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

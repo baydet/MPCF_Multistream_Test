@@ -24,4 +24,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)onServerClick:(id)sender {
+}
+
+- (IBAction)onClientClick:(id)sender {
+}
+
 @end
