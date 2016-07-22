@@ -81,7 +81,7 @@
         u_int32_t length = 0;
         while (length == 0)
         {
-            length = kStreamReadMaxLength;//(arc4random_uniform(kStreamWriteMaxLength) / kStreamReadMaxLength) * kStreamReadMaxLength;
+            length = (arc4random_uniform(kStreamWriteMaxLength) / kStreamReadMaxLength) * kStreamReadMaxLength;
         }
         NSData * data = [NSData randomDataWithLength:length];
         counter += data.length;
