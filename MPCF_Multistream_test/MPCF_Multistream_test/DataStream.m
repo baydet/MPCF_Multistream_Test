@@ -72,6 +72,7 @@
 
         case NSStreamEventEndEncountered:
             NSLog(@"%@ end encountered", aStream);
+            [self end];
             break;
 
         case NSStreamEventErrorOccurred:
@@ -84,6 +85,11 @@
         default:
             break;
     }
+
+}
+
+- (void)end
+{
 
 }
 
@@ -123,8 +129,7 @@
 - (void)writeData {
     NSData *data = [self.dataProvider dataForStream:self];
     if (data == nil) {
-        return;
-//        [self.outputStream close];
+        [self.outputStream close];
     }
 
     _sentLength += data.length;
@@ -160,14 +165,22 @@
 }
 
 - (void)readData {
-    uint8_t bytes[kStreamReadMaxLength];
-    NSMutableData *data = [NSMutableData new];
-    [self.inputStream read:bytes maxLength:kStreamReadMaxLength];
-    [data appendData:[[NSData alloc] initWithBytes:bytes length:kStreamReadMaxLength]];
-    [self.dataProcessor stream:self hasData:data];
-    _receivedLength += data.length;
+    NSMutableData *data = [NSMutableData data];
+    uint8_t buf[kStreamReadMaxLength];
+    NSInteger len = [self.inputStream read:buf maxLength:kStreamReadMaxLength];
+    if(len) {
+        [data appendBytes:(const void *) buf length:(NSUInteger) len];
+        [self.dataProcessor stream:self hasData:data];
+        _receivedLength += len;
+    } else {
+        return;
+    }
 }
 
+- (void)end
+{
+    [self.delegate readingDidEndForStream:self];
+}
 
 
 - (NSString *)description

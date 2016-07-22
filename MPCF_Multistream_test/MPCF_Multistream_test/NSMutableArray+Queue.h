@@ -9,6 +9,5 @@
 
 - (void)pushObject:(id)object;
 - (id)popObject;
-- (id)topObject;
 
 @end

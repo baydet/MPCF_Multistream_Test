@@ -16,7 +16,7 @@
 {
     MultipeerServer *_server;
     MultipeerClient *_client;
-    UILabel *_label;
+    UITextView *_label;
 }
 
 
@@ -37,9 +37,10 @@
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClient) userInfo:nil repeats:YES];
     }
 
-    _label = [[UILabel alloc] initWithFrame:self.window.bounds];
+    _label = [[UITextView alloc] initWithFrame:self.window.bounds];
+
     [self.window addSubview:_label];
-    _label.numberOfLines = 0;
+    _label.editable = NO;
     _label.font = [UIFont systemFontOfSize:8];
 
 
@@ -48,13 +49,13 @@
 
 - (void)update
 {
-    _label.text = _server.description;
+    _label.text = [NSString stringWithFormat:@"server \n\n %@", _server.description];
     [self.window bringSubviewToFront:_label];
 }
 
 - (void)updateClient
 {
-    _label.text = _client.description;
+    _label.text = [NSString stringWithFormat:@"client \n\n %@", _client.description];
     [self.window bringSubviewToFront:_label];
 }
 

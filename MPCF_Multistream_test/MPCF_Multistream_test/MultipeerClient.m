@@ -20,20 +20,6 @@
 
 @implementation MultipeerClient
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self)
-    {
-        self.peerId = [MCPeerID createPeer];
-        self.session = [[MultipeerSession alloc] initWithPeer:self.peerId];
-        self.session.shouldRetranslateStream = YES;
-    }
-
-    return self;
-}
-
-
 - (void)startBrowsing
 {
     self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:self.peerId serviceType:SERVICE_NAME];
@@ -53,11 +39,5 @@
 {
 
 }
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@\n%@", _session.inputStreams.description, _session.outputStreams.description];
-}
-
 
 @end

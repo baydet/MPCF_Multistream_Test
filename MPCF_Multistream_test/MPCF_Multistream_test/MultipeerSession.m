@@ -9,6 +9,7 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "MultipeerSession.h"
 #import "DataStream.h"
+#import "Constants.h"
 
 @interface MultipeerSession () <MCSessionDelegate>
 @property(nonatomic, readwrite) MCSession *mcSession;
@@ -25,7 +26,7 @@
     self = [super init];
     if (self)
     {
-        _streamsCount = 20;
+        _streamsCount = kStreamsCount;
         self.mcSession = [[MCSession alloc] initWithPeer:peerID];
         self.mcSession.delegate = self;
         self.inputStreams = [@{} mutableCopy];
@@ -39,7 +40,7 @@
 
     for (int i = 0; i < _streamsCount; ++i)
     {
-        NSString *name = [NSString stringWithFormat:@"output_stream#%d", i];
+        NSString *name = [NSString stringWithFormat:@"%@_out_str#%d", [self.mcSession.myPeerID.displayName substringToIndex:4], i];
         self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId];
     }
 }
@@ -83,10 +84,11 @@
     DataBuffer *buffer = [DataBuffer new];
     InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream];
     inputDataStream.dataProcessor = buffer;
+    inputDataStream.delegate = buffer;
     [inputDataStream start];
     self.inputStreams[streamName] = inputDataStream;
-    if (self.shouldRetranslateStream) {
-        NSString *name = [NSString stringWithFormat:@"retranslated_%@", streamName];
+    if (self.shouldRetranslateStream && ![streamName containsString:@"retr_"]) {
+        NSString *name = [NSString stringWithFormat:@"retr_%@", streamName];
         OutputDataStream *dataStream = [self createAndOpenOutputStreamWithName:name toPeer:peerID];
         dataStream.dataProvider = buffer;
         self.outputStreams[name] = dataStream;

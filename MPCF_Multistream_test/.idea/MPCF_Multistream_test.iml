@@ -5,9 +5,10 @@
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerServer.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/AppDelegate.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/main.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerServer.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Constants.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/DataStream.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Base.lproj/Main.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerClient.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Assets.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MCPeerID+MPC.m" isTestSource="false" />
@@ -15,17 +16,18 @@
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerSession.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerClient.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MCPeerID+MPC.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerServer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/MultipeerSession.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/DataGenerators.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/StreamManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/StreamManager.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/ViewController.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/NSMutableArray+Queue.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/DataGenerators.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/ViewController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/NSMutableArray+Queue.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/DataStream.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/DataGenerators.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/AppDelegate.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPCF_Multistream_test/Base.lproj/Main.storyboard" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

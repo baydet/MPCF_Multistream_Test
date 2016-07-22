@@ -24,13 +24,4 @@
     return nil;
 }
 
-- (id)topObject
-{
-    if (self.count > 0) {
-        return self[0];
-    }
-
-    return nil;
-}
-
 @end

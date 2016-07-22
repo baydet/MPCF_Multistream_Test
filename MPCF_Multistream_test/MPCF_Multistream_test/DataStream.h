@@ -30,9 +30,14 @@
 
 @end
 
+@protocol InputStreamDelegate <NSObject>
+- (void)readingDidEndForStream:(InputDataStream *)stream;
+@end
+
 @interface InputDataStream: DataStream
 
 @property(nonatomic, strong) id<DataProcessor>dataProcessor;
+@property(nonatomic, weak) id<InputStreamDelegate> delegate;
 - (instancetype)initWithInputStream:(NSInputStream *)inputStream;
 
 @end

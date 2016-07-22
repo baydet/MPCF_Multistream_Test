@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StreamManager.h"
 
-@interface MultipeerClient : NSObject
+@interface MultipeerClient : StreamManager
 
 - (void)startBrowsing;
 

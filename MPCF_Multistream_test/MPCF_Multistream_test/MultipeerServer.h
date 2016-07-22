@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StreamManager.h"
 
 @class MCSession;
 @class MCPeerID;
 
-@interface MultipeerServer : NSObject
+@interface MultipeerServer : StreamManager
 
 - (void)startAdvertise;
 
