@@ -41,15 +41,15 @@
     for (int i = 0; i < _streamsCount; ++i)
     {
         NSString *name = [NSString stringWithFormat:@"%@_out_str#%d", [self.mcSession.myPeerID.displayName substringToIndex:4], i];
-        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId];
+        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId dataProvider:[[OutputDataGenerator alloc] init]];
     }
 }
 
-- (OutputDataStream *)createAndOpenOutputStreamWithName:(NSString *)name toPeer:(MCPeerID *)peer {
+- (OutputDataStream *)createAndOpenOutputStreamWithName:(NSString *)name toPeer:(MCPeerID *)peer dataProvider:(id <DataStreamGenerator>)dataProvider
+{
     NSError *error;
     NSOutputStream *stream = [self.mcSession startStreamWithName:name toPeer:peer error:&error];
-    OutputDataStream *dataStream = [[OutputDataStream alloc] initWithOutputStream:stream];
-    dataStream.dataProvider = [[OutputDataGenerator alloc] init];
+    OutputDataStream *dataStream = [[OutputDataStream alloc] initWithOutputStream:stream dataProvider:dataProvider];
     [dataStream start];
 
     if (error) {
@@ -82,15 +82,13 @@
 {
     NSLog(@"did receive stream: %@", streamName);
     DataBuffer *buffer = [DataBuffer new];
-    InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream];
-    inputDataStream.dataProcessor = buffer;
+    InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream dataProcessor:buffer];
     inputDataStream.delegate = buffer;
     [inputDataStream start];
     self.inputStreams[streamName] = inputDataStream;
     if (self.shouldRetranslateStream && ![streamName containsString:@"retr_"]) {
         NSString *name = [NSString stringWithFormat:@"retr_%@", streamName];
-        OutputDataStream *dataStream = [self createAndOpenOutputStreamWithName:name toPeer:peerID];
-        dataStream.dataProvider = buffer;
+        OutputDataStream *dataStream = [self createAndOpenOutputStreamWithName:name toPeer:peerID dataProvider:buffer];
         self.outputStreams[name] = dataStream;
     }
 }

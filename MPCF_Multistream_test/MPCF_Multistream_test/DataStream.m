@@ -11,6 +11,7 @@
 
 @interface DataStream () <NSStreamDelegate>
 @property(nonatomic, strong) NSThread *streamThread;
+@property(nonatomic, strong) NSStream *stream;
 @end
 
 @implementation DataStream
@@ -98,6 +99,7 @@
 
 @interface OutputDataStream ()
 @property(nonatomic, weak) NSOutputStream *outputStream;
+@property(nonatomic, strong) id<DataStreamGenerator>dataProvider;
 @end
 
 @implementation OutputDataStream
@@ -105,12 +107,13 @@
     NSUInteger _sentLength;
 }
 
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataStreamGenerator>)dataProvider
 {
     self = [super initWithStream:outputStream];
     if (self)
     {
         self.outputStream = outputStream;
+        self.dataProvider = dataProvider;
     }
 
     return self;
@@ -136,6 +139,7 @@
 
 @interface InputDataStream ()
 @property(nonatomic, weak) NSInputStream *inputStream;
+@property(nonatomic, strong) id<DataProcessor>dataProcessor;
 @end
 
 @implementation InputDataStream
@@ -143,12 +147,13 @@
     NSUInteger _receivedLength;
 }
 
-- (instancetype)initWithInputStream:(NSInputStream *)inputStream;
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor
 {
     self = [super initWithStream:inputStream];
     if (self)
     {
         self.inputStream = inputStream;
+        self.dataProcessor = dataProcessor;
     }
 
     return self;

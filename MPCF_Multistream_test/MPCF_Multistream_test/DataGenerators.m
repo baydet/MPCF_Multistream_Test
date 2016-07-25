@@ -24,7 +24,6 @@
 
 @implementation DataBuffer
 
-
 - (instancetype)init
 {
     self = [super init];

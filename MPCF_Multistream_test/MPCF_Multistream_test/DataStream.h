@@ -15,8 +15,6 @@
 
 @interface DataStream : NSObject
 
-@property(nonatomic, strong) NSStream *stream;
-
 - (instancetype)initWithStream:(NSStream *)stream;
 - (void)start;
 
@@ -24,9 +22,7 @@
 
 @interface OutputDataStream : DataStream
 
-@property(nonatomic, strong) id<DataStreamGenerator>dataProvider;
-
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream;
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataStreamGenerator>)dataProvider;
 
 @end
 
@@ -36,8 +32,8 @@
 
 @interface InputDataStream: DataStream
 
-@property(nonatomic, strong) id<DataProcessor>dataProcessor;
 @property(nonatomic, weak) id<InputStreamDelegate> delegate;
-- (instancetype)initWithInputStream:(NSInputStream *)inputStream;
+
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor;
 
 @end
