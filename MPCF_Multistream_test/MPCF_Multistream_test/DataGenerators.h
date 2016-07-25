@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "DataStream.h"
 
-@protocol DataStreamGenerator, InputStreamDelegate;
+@protocol InputStreamDelegate;
 @class DataStream;
 
 @protocol DataProcessor <NSObject>
@@ -17,10 +17,8 @@
 - (NSData*)dataForStream:(DataStream *)stream;
 @end
 
-
 @interface OutputDataGenerator: NSObject <DataStreamGenerator>
 @end
-
 
 @interface DataBuffer: NSObject <DataStreamGenerator, DataProcessor, InputStreamDelegate>
 @property(atomic, strong) NSMutableArray *buffer;

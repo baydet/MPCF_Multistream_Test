@@ -13,16 +13,6 @@
 @property(nonatomic, strong) NSThread *streamThread;
 @end
 
-@implementation NSData(Random)
-
-+(instancetype)randomDataWithLength:(NSUInteger)length
-{
-    NSMutableData* data=[NSMutableData dataWithLength:length];
-    [[NSInputStream inputStreamWithFileAtPath:@"/dev/urandom"] read:(uint8_t*)[data mutableBytes] maxLength:length];
-    return data;
-}
-@end
-
 @implementation DataStream
 
 - (instancetype)initWithStream:(NSStream *)stream
