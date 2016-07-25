@@ -11,14 +11,16 @@
 #import "DataStream.h"
 #import "Constants.h"
 
-@interface MultipeerSession () <MCSessionDelegate>
+@interface MultipeerSession () <MCSessionDelegate, InputStreamDelegate>
 @property(nonatomic, readwrite) MCSession *mcSession;
+@property(nonatomic, strong) NSMutableDictionary<NSString *, OutputBuffer *> *outputBuffer;
+@property(nonatomic, strong) NSMutableDictionary<NSString *, InputDataBuffer *> *inputBuffer;
 
 @end
 
 @implementation MultipeerSession
 {
-    int _streamsCount;
+    NSInteger _streamsCount;
 }
 
 - (instancetype)initWithPeer:(MCPeerID *)peerID
@@ -31,6 +33,9 @@
         self.mcSession.delegate = self;
         self.inputStreams = [@{} mutableCopy];
         self.outputStreams = [@{} mutableCopy];
+
+        self.inputBuffer = [@{} mutableCopy];
+        self.outputBuffer = [@{} mutableCopy];
     }
 
     return self;
@@ -41,7 +46,9 @@
     for (int i = 0; i < _streamsCount; ++i)
     {
         NSString *name = [NSString stringWithFormat:@"%@_out_str#%d", [self.mcSession.myPeerID.displayName substringToIndex:4], i];
-        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId dataProvider:[[OutputDataGenerator alloc] initWithLength:kPacketLength]];
+        OutputBuffer *provider = [[OutputBuffer alloc] initWithDataLength:kPacketLength];
+        self.outputBuffer[name] = provider;
+        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId dataProvider:provider];
     }
 }
 
@@ -49,7 +56,7 @@
 {
     NSError *error;
     NSOutputStream *stream = [self.mcSession startStreamWithName:name toPeer:peer error:&error];
-    OutputDataStream *dataStream = [[OutputDataStream alloc] initWithOutputStream:stream dataProvider:dataProvider];
+    OutputDataStream *dataStream = [[OutputDataStream alloc] initWithOutputStream:stream dataProvider:dataProvider name:name];
     [dataStream start];
 
     if (error) {
@@ -81,11 +88,12 @@
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"did receive stream: %@", streamName);
-    DataBuffer *buffer = [DataBuffer new];
-    InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream dataProcessor:buffer];
-    inputDataStream.delegate = buffer;
+    InputDataBuffer *buffer = [InputDataBuffer new];
+    InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream dataProcessor:buffer name:streamName];
+    inputDataStream.delegate = self;
     [inputDataStream start];
     self.inputStreams[streamName] = inputDataStream;
+    self.inputBuffer[streamName] = buffer;
     if (self.shouldRetranslateStream && ![streamName containsString:@"retr_"]) {
         NSString *name = [NSString stringWithFormat:@"retr_%@", streamName];
         OutputDataStream *dataStream = [self createAndOpenOutputStreamWithName:name toPeer:peerID dataProvider:buffer];
@@ -103,5 +111,18 @@
 
 }
 
+#pragma mark - InputStreamDelegate
+
+- (void)readingDidEndForStream:(InputDataStream *)stream
+{
+    InputDataBuffer *const buffer = self.inputBuffer[stream.name];
+    [buffer stopBuffering];
+    if ([stream.name containsString:@"retr_"]) {
+        NSString *originalName = [stream.name stringByReplacingOccurrencesOfString:@"retr_" withString:@""];
+        NSAssert([self.outputBuffer[originalName].sentData isEqualToData:buffer.receivedData], @"%@ retranslated not equally", originalName);
+        NSLog(@"\"%@\" retranslated equally", originalName);
+
+    }
+}
 
 @end

@@ -13,7 +13,7 @@
 
 static NSUInteger const kStreamReadMaxLength = 512;
 static NSUInteger const kStreamWriteMaxLength = 512 * 8;
-static UInt32 const kPacketLength = 1024*1024;
+static UInt32 const kPacketLength = 1024*100;
 static UInt32 const kStreamsCount = 20;
 
 #endif /* Constants_h */

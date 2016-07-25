@@ -13,9 +13,7 @@
 #import "MultipeerSession.h"
 
 @interface MultipeerClient () <MCNearbyServiceBrowserDelegate>
-@property(nonatomic, strong) MCPeerID *peerId;
 @property(nonatomic, strong) MCNearbyServiceBrowser *browser;
-@property(nonatomic, strong) MultipeerSession *session;
 @end
 
 @implementation MultipeerClient

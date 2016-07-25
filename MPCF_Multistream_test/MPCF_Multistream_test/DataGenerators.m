@@ -3,45 +3,58 @@
 // Copyright (c) 2016 baydet. All rights reserved.
 //
 
-#import "DataGenerators.h"
+#import "DataStream.h"
 #import "Constants.h"
 #import "NSMutableArray+Queue.h"
 
 @implementation NSData(Random)
 
-+(id)randomDataWithLength:(NSUInteger)length
++(NSData *)randomDataWithLength:(NSUInteger)length
 {
-    NSMutableData* data = [NSMutableData dataWithLength:length];
-    [[NSInputStream inputStreamWithFileAtPath:@"/dev/urandom"] read:(uint8_t*)[data mutableBytes] maxLength:length];
-    return data;
+    NSMutableData *mutableData = [NSMutableData dataWithCapacity: length];
+    for (unsigned int i = 0; i < length; i++) {
+        NSInteger randomBits = arc4random();
+        [mutableData appendBytes: (void *) &randomBits length: 1];
+    }
+    return mutableData;
 }
 
 @end
 
-@interface DataBuffer ()
+@interface InputDataBuffer ()
 @property(atomic) bool doneBuffering;
 @end
 
-@implementation DataBuffer
+@implementation InputDataBuffer
+{
+    NSMutableData *_mutableReceivedData;
+}
 
 - (instancetype)init
 {
     self = [super init];
     if (self)
     {
-        self.buffer = [[NSMutableArray alloc] initWithCapacity:100000];
+        self.buffer = [[NSMutableArray alloc] initWithCapacity:10000];
+        _mutableReceivedData = [[NSMutableData alloc] initWithCapacity:kPacketLength];
     }
 
     return self;
 }
 
-- (void)readingDidEndForStream:(InputDataStream *)stream
+- (NSData *)receivedData
+{
+    return _mutableReceivedData;
+}
+
+- (void)stopBuffering
 {
     self.doneBuffering = true;
 }
 
 - (NSData *)dataForStream:(DataStream *)stream
 {
+    //busy waiting. For test purposes only
     while (self.buffer.count == 0) {
         if (self.doneBuffering) {
             return nil;
@@ -53,16 +66,17 @@
 
 - (void)stream:(DataStream *)stream hasData:(NSData *)data
 {
+    [_mutableReceivedData appendData: data];
     [self.buffer pushObject:data];
 }
 
 @end
 
-@interface OutputDataGenerator()
+@interface OutputBuffer()
 @property(nonatomic, strong) NSMutableData *mutableSentData;
 @end
 
-@implementation OutputDataGenerator
+@implementation OutputBuffer
 {
     int counter;
     NSUInteger _length;
@@ -73,7 +87,7 @@
     return _mutableSentData;
 }
 
-- (instancetype)initWithLength:(NSUInteger) length
+- (instancetype)initWithDataLength:(NSUInteger) length
 {
     self = [super init];
     if (self)

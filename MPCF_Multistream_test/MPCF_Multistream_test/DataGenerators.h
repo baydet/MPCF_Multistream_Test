@@ -4,7 +4,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataStream.h"
 
 @protocol InputStreamDelegate;
 @class DataStream;
@@ -14,14 +13,17 @@
 @end
 
 @protocol DataGenerator <NSObject>
-@property(nonatomic, readonly) NSData* sentData;
 - (NSData*)dataForStream:(DataStream *)stream;
 @end
 
-@interface OutputDataGenerator: NSObject <DataGenerator>
-- (instancetype)initWithLength:(NSUInteger)length;
+@interface InputDataBuffer: NSObject <DataGenerator, DataProcessor>
+@property(atomic, strong) NSMutableArray *buffer;
+@property(nonatomic, readonly) NSData *receivedData;
+
+- (void)stopBuffering;
 @end
 
-@interface DataBuffer: NSObject <DataGenerator, DataProcessor, InputStreamDelegate>
-@property(atomic, strong) NSMutableArray *buffer;
+@interface OutputBuffer: NSObject <DataGenerator>
+@property(nonatomic, readonly) NSData* sentData;
+- (instancetype)initWithDataLength:(NSUInteger)length;
 @end

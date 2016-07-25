@@ -16,12 +16,13 @@
 
 @implementation DataStream
 
-- (instancetype)initWithStream:(NSStream *)stream
+- (instancetype)initWithStream:(NSStream *)stream name:(NSString *)name
 {
     self = [super init];
     if (self)
     {
         self.stream = stream;
+        self.name = name;
     }
 
     return self;
@@ -107,9 +108,9 @@
     NSUInteger _sentLength;
 }
 
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider name:(NSString *)name
 {
-    self = [super initWithStream:outputStream];
+    self = [super initWithStream:outputStream name:name];
     if (self)
     {
         self.outputStream = outputStream;
@@ -147,9 +148,9 @@
     NSUInteger _receivedLength;
 }
 
-- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor name:(NSString *)name
 {
-    self = [super initWithStream:inputStream];
+    self = [super initWithStream:inputStream name:name];
     if (self)
     {
         self.inputStream = inputStream;

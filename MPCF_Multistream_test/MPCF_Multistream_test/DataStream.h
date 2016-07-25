@@ -14,15 +14,16 @@
 @protocol DataProcessor;
 
 @interface DataStream : NSObject
+@property(nonatomic, copy) NSString *name;
 
-- (instancetype)initWithStream:(NSStream *)stream;
+- (instancetype)initWithStream:(NSStream *)stream name:(NSString *)name;
 - (void)start;
 
 @end
 
 @interface OutputDataStream : DataStream
 
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider;
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider name:(NSString *)name;
 
 @end
 
@@ -34,6 +35,6 @@
 
 @property(nonatomic, weak) id<InputStreamDelegate> delegate;
 
-- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor;
+- (instancetype)initWithInputStream:(NSInputStream *)inputStream dataProcessor:(id <DataProcessor>)dataProcessor name:(NSString *)name;
 
 @end
