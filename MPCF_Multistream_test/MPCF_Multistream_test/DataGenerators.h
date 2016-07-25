@@ -5,25 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol InputStreamDelegate;
-@class DataStream;
-
-@protocol DataProcessor <NSObject>
-- (void)stream:(DataStream *)stream hasData:(NSData *)data;
-@end
-
 @protocol DataGenerator <NSObject>
-- (NSData*)dataForStream:(DataStream *)stream;
-@end
-
-@interface InputDataBuffer: NSObject <DataGenerator, DataProcessor>
-@property(atomic, strong) NSMutableArray *buffer;
-@property(nonatomic, readonly) NSData *receivedData;
-
-- (void)stopBuffering;
+- (NSData *)getDataChunk;
 @end
 
 @interface OutputBuffer: NSObject <DataGenerator>
 @property(nonatomic, readonly) NSData* sentData;
+@property(atomic, strong) NSMutableArray *buffer;
 - (instancetype)initWithDataLength:(NSUInteger)length;
 @end

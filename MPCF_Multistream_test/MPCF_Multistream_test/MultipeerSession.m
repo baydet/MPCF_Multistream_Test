@@ -10,6 +10,8 @@
 #import "MultipeerSession.h"
 #import "DataStream.h"
 #import "Constants.h"
+#import "InputDataBuffer.h"
+#import "NSMutableArray+Queue.h"
 
 @interface MultipeerSession () <MCSessionDelegate, InputStreamDelegate>
 @property(nonatomic, readwrite) MCSession *mcSession;
@@ -88,7 +90,16 @@
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"did receive stream: %@", streamName);
-    InputDataBuffer *buffer = [InputDataBuffer new];
+    OutputBuffer *outputBuffer = self.outputBuffer[[self originalStreamName:streamName]];
+    BOOL (^ validationBlock)(NSData *) = nil;
+    if (outputBuffer != nil)
+    {
+//        validationBlock = ^BOOL(NSData *data) {
+//            id sentData = [outputBuffer.buffer popObject];
+//            return [sentData isEqualToData:data];
+//        };
+    }
+    InputDataBuffer *buffer = [[InputDataBuffer alloc] initWithValidationBlock:validationBlock];
     InputDataStream *inputDataStream = [[InputDataStream alloc] initWithInputStream:stream dataProcessor:buffer name:streamName];
     inputDataStream.delegate = self;
     [inputDataStream start];
@@ -118,11 +129,16 @@
     InputDataBuffer *const buffer = self.inputBuffer[stream.name];
     [buffer stopBuffering];
     if ([stream.name containsString:@"retr_"]) {
-        NSString *originalName = [stream.name stringByReplacingOccurrencesOfString:@"retr_" withString:@""];
-        NSAssert([self.outputBuffer[originalName].sentData isEqualToData:buffer.receivedData], @"%@ retranslated not equally", originalName);
+        NSString *originalName = [self originalStreamName:stream.name];
+        NSAssert([self.outputBuffer[originalName].sentData isEqualToData:buffer.receivedData], @"%@ retranslated data is not equal", originalName);
         NSLog(@"\"%@\" retranslated equally", originalName);
-
     }
+}
+
+- (NSString *)originalStreamName:(NSString *)name
+{
+    NSString *originalName = [name stringByReplacingOccurrencesOfString:@"retr_" withString:@""];
+    return originalName;
 }
 
 @end

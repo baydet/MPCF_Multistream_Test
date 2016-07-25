@@ -22,6 +22,7 @@
 		D3AAD0E01D3FCFF700F22272 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AAD0DE1D3FCFF700F22272 /* CFNetwork.framework */; };
 		FAADD590BAC22986689B5B24 /* MCPeerID+MPC.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADD9C91079B08EF7FF2009 /* MCPeerID+MPC.m */; };
 		FAADDA0733F80F61034C7192 /* StreamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADDE057184F93A2C98CA22 /* StreamManager.m */; };
+		FAADDB6027FF4A9388CC5ABD /* InputDataBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3D35F59A7D587754188 /* InputDataBuffer.m */; };
 		FAADDCB9277982B7030D9A2A /* DataGenerators.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3A9ED0D657BC57BCC9A /* DataGenerators.m */; };
 		FAADDE85C037D7B1A220FB42 /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = FAADDA67AA6AD7CC219872BB /* NSMutableArray+Queue.m */; };
 /* End PBXBuildFile section */
@@ -51,9 +52,11 @@
 		D3AAD0DE1D3FCFF700F22272 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FAADD182025403B869D73370 /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
 		FAADD3A9ED0D657BC57BCC9A /* DataGenerators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGenerators.m; sourceTree = "<group>"; };
+		FAADD3D35F59A7D587754188 /* InputDataBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDataBuffer.m; sourceTree = "<group>"; };
 		FAADD729E9E147AD98A401A0 /* MCPeerID+MPC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCPeerID+MPC.h"; sourceTree = "<group>"; };
 		FAADD798B7B9707822BFF8E1 /* DataGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGenerators.h; sourceTree = "<group>"; };
 		FAADD9C91079B08EF7FF2009 /* MCPeerID+MPC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCPeerID+MPC.m"; sourceTree = "<group>"; };
+		FAADD9E7763BDA5874641E59 /* InputDataBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDataBuffer.h; sourceTree = "<group>"; };
 		FAADDA67AA6AD7CC219872BB /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		FAADDAB24D5AFCCD7673F8F7 /* StreamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamManager.h; sourceTree = "<group>"; };
 		FAADDE057184F93A2C98CA22 /* StreamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamManager.m; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				FAADD798B7B9707822BFF8E1 /* DataGenerators.h */,
 				FAADDE057184F93A2C98CA22 /* StreamManager.m */,
 				FAADDAB24D5AFCCD7673F8F7 /* StreamManager.h */,
+				FAADD3D35F59A7D587754188 /* InputDataBuffer.m */,
+				FAADD9E7763BDA5874641E59 /* InputDataBuffer.h */,
 			);
 			name = MPC;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				FAADDE85C037D7B1A220FB42 /* NSMutableArray+Queue.m in Sources */,
 				FAADDCB9277982B7030D9A2A /* DataGenerators.m in Sources */,
 				FAADDA0733F80F61034C7192 /* StreamManager.m in Sources */,
+				FAADDB6027FF4A9388CC5ABD /* InputDataBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,57 +21,6 @@
 
 @end
 
-@interface InputDataBuffer ()
-@property(atomic) bool doneBuffering;
-@end
-
-@implementation InputDataBuffer
-{
-    NSMutableData *_mutableReceivedData;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self)
-    {
-        self.buffer = [[NSMutableArray alloc] initWithCapacity:10000];
-        _mutableReceivedData = [[NSMutableData alloc] initWithCapacity:kPacketLength];
-    }
-
-    return self;
-}
-
-- (NSData *)receivedData
-{
-    return _mutableReceivedData;
-}
-
-- (void)stopBuffering
-{
-    self.doneBuffering = true;
-}
-
-- (NSData *)dataForStream:(DataStream *)stream
-{
-    //busy waiting. For test purposes only
-    while (self.buffer.count == 0) {
-        if (self.doneBuffering) {
-            return nil;
-        }
-    }
-    id obj = [self.buffer popObject];
-    return obj;
-}
-
-- (void)stream:(DataStream *)stream hasData:(NSData *)data
-{
-    [_mutableReceivedData appendData: data];
-    [self.buffer pushObject:data];
-}
-
-@end
-
 @interface OutputBuffer()
 @property(nonatomic, strong) NSMutableData *mutableSentData;
 @end
@@ -94,13 +43,14 @@
     {
         _length = length;
         counter = 0;
+        self.buffer = [NSMutableArray new];
         self.mutableSentData = [[NSMutableData alloc] initWithCapacity:_length];
     }
 
     return self;
 }
 
-- (NSData *)dataForStream:(DataStream *)stream
+- (NSData *)getDataChunk
 {
     if (counter < _length) {
         u_int32_t length = 0;
@@ -114,6 +64,7 @@
         NSData * data = [NSData randomDataWithLength:length];
         counter += data.length;
         [self.mutableSentData appendData:data];
+        [self.buffer pushObject:data];
         return data;
     } else {
         return nil;

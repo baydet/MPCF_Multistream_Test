@@ -8,6 +8,7 @@
 
 #import "DataStream.h"
 #import "Constants.h"
+#import "InputDataBuffer.h"
 
 @interface DataStream () <NSStreamDelegate>
 @property(nonatomic, strong) NSThread *streamThread;
@@ -82,7 +83,8 @@
 
 - (void)end
 {
-
+    [self.stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    self.stream = nil;
 }
 
 - (void)readData
@@ -121,7 +123,7 @@
 }
 
 - (void)writeData {
-    NSData *data = [self.dataProvider dataForStream:self];
+    NSData *data = [self.dataProvider getDataChunk];
     if (data == nil) {
         [self.outputStream close];
     }
@@ -166,7 +168,7 @@
     NSInteger len = [self.inputStream read:buf maxLength:kStreamReadMaxLength];
     if(len) {
         [data appendBytes:(const void *) buf length:(NSUInteger) len];
-        [self.dataProcessor stream:self hasData:data];
+        [self.dataProcessor processData:data];
         _receivedLength += len;
     } else {
         return;
@@ -175,6 +177,7 @@
 
 - (void)end
 {
+    [super end];
     [self.delegate readingDidEndForStream:self];
 }
 
