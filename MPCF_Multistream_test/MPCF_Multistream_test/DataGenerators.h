@@ -14,10 +14,12 @@
 @end
 
 @protocol DataGenerator <NSObject>
+@property(nonatomic, readonly) NSData* sentData;
 - (NSData*)dataForStream:(DataStream *)stream;
 @end
 
 @interface OutputDataGenerator: NSObject <DataGenerator>
+- (instancetype)initWithLength:(NSUInteger)length;
 @end
 
 @interface DataBuffer: NSObject <DataGenerator, DataProcessor, InputStreamDelegate>

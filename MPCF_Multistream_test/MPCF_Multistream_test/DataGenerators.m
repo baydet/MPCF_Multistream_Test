@@ -58,17 +58,29 @@
 
 @end
 
+@interface OutputDataGenerator()
+@property(nonatomic, strong) NSMutableData *mutableSentData;
+@end
+
 @implementation OutputDataGenerator
 {
     int counter;
+    NSUInteger _length;
 }
 
-- (instancetype)init
+- (NSData *)sentData
+{
+    return _mutableSentData;
+}
+
+- (instancetype)initWithLength:(NSUInteger) length
 {
     self = [super init];
     if (self)
     {
+        _length = length;
         counter = 0;
+        self.mutableSentData = [[NSMutableData alloc] initWithCapacity:_length];
     }
 
     return self;
@@ -76,14 +88,18 @@
 
 - (NSData *)dataForStream:(DataStream *)stream
 {
-    if (counter < kPacketLength) {
+    if (counter < _length) {
         u_int32_t length = 0;
         while (length == 0)
         {
             length = (arc4random_uniform(kStreamWriteMaxLength) / kStreamReadMaxLength) * kStreamReadMaxLength;
+            if (counter + length > _length) {
+                length = _length - counter;
+            }
         }
         NSData * data = [NSData randomDataWithLength:length];
         counter += data.length;
+        [self.mutableSentData appendData:data];
         return data;
     } else {
         return nil;

@@ -41,7 +41,7 @@
     for (int i = 0; i < _streamsCount; ++i)
     {
         NSString *name = [NSString stringWithFormat:@"%@_out_str#%d", [self.mcSession.myPeerID.displayName substringToIndex:4], i];
-        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId dataProvider:[[OutputDataGenerator alloc] init]];
+        self.outputStreams[name] = [self createAndOpenOutputStreamWithName:name toPeer:peerId dataProvider:[[OutputDataGenerator alloc] initWithLength:kPacketLength]];
     }
 }
 
