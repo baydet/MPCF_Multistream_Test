@@ -22,7 +22,7 @@
 
 @interface OutputDataStream : DataStream
 
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataStreamGenerator>)dataProvider;
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider;
 
 @end
 

@@ -45,7 +45,7 @@
     }
 }
 
-- (OutputDataStream *)createAndOpenOutputStreamWithName:(NSString *)name toPeer:(MCPeerID *)peer dataProvider:(id <DataStreamGenerator>)dataProvider
+- (OutputDataStream *)createAndOpenOutputStreamWithName:(NSString *)name toPeer:(MCPeerID *)peer dataProvider:(id <DataGenerator>)dataProvider
 {
     NSError *error;
     NSOutputStream *stream = [self.mcSession startStreamWithName:name toPeer:peer error:&error];

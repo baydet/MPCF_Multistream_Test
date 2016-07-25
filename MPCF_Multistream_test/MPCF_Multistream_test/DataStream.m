@@ -99,7 +99,7 @@
 
 @interface OutputDataStream ()
 @property(nonatomic, weak) NSOutputStream *outputStream;
-@property(nonatomic, strong) id<DataStreamGenerator>dataProvider;
+@property(nonatomic, strong) id<DataGenerator>dataProvider;
 @end
 
 @implementation OutputDataStream
@@ -107,7 +107,7 @@
     NSUInteger _sentLength;
 }
 
-- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataStreamGenerator>)dataProvider
+- (instancetype)initWithOutputStream:(NSOutputStream *)outputStream dataProvider:(id <DataGenerator>)dataProvider
 {
     self = [super initWithStream:outputStream];
     if (self)

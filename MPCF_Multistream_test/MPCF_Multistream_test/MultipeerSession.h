@@ -13,7 +13,7 @@
 @class MultipeerSession;
 @class OutputDataStream;
 @class InputDataStream;
-@protocol DataStreamGenerator;
+@protocol DataGenerator;
 
 @protocol MultipeerSessionDelegate
 - (void)session:(MultipeerSession *)session didConnectToPeer:(MCPeerID *)peer;

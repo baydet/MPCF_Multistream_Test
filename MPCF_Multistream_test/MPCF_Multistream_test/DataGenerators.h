@@ -13,13 +13,13 @@
 - (void)stream:(DataStream *)stream hasData:(NSData *)data;
 @end
 
-@protocol DataStreamGenerator <NSObject>
+@protocol DataGenerator <NSObject>
 - (NSData*)dataForStream:(DataStream *)stream;
 @end
 
-@interface OutputDataGenerator: NSObject <DataStreamGenerator>
+@interface OutputDataGenerator: NSObject <DataGenerator>
 @end
 
-@interface DataBuffer: NSObject <DataStreamGenerator, DataProcessor, InputStreamDelegate>
+@interface DataBuffer: NSObject <DataGenerator, DataProcessor, InputStreamDelegate>
 @property(atomic, strong) NSMutableArray *buffer;
 @end
