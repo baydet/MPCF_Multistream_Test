@@ -18,9 +18,9 @@ class Streamer: NSObject, MCSessionDelegate {
 
     let peerID: MCPeerID
     let session: MCSession
-    let streamsCount: Int = 20
-    private var outputDataSources: [String : OutputStreamDelegate] = [:]
-    private var inputDataSources: [String : InputStreamDelegate] = [:]
+    let streamsCount: Int = 1
+    private var outputDataSources: [String : OutputDataSource] = [:]
+    private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []
 
     required init(peer: MCPeerID = MCPeerID.currentPeer()) {
@@ -46,6 +46,7 @@ class Streamer: NSObject, MCSessionDelegate {
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
             let outputDataSource = OutputDataSource()
+            outputDataSources[name] = outputDataSource
             createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
         }
     }
@@ -64,7 +65,6 @@ class Streamer: NSObject, MCSessionDelegate {
         do {
             let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
             let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate)
-            outputDataSources[name] = outputDelegate
             stream.start()
             streams.append(stream)
             return stream
@@ -73,16 +73,25 @@ class Streamer: NSObject, MCSessionDelegate {
         }
     }
 
-    private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: InputStreamDelegate) -> InputStream {
+    private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: TranslateDataSource) -> InputStream {
         let inputStream = InputStream(inputStream: stream, delegate: inputProcessor)
         inputStream.start()
         streams.append(inputStream)
         if name.containsString(retranslatePrefix) {
-            //todo compare data on completion
+            let originalName = name.stringByReplacingOccurrencesOfString(retranslatePrefix, withString: "")
+            let data = outputDataSources[originalName]?.sentData
+            inputProcessor.dataDidReceivedNotification = { receivedData in
+                if let sentData = data, receivedData = receivedData where !receivedData.isEqualToData(sentData)  {
+                    assert(false, "data is not equal")
+                } else {
+                    print("data is equal")
+                }
+                
+            }
+            
         }
         return inputStream
     }
-
 
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {}
     func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {}

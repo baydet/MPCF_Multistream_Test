@@ -11,7 +11,7 @@ protocol InputStreamDelegate: StreamDelegate {
 
 class InputStream: Stream {
     private let inputStream: NSInputStream
-    private weak var inputStreamDelegate: InputStreamDelegate?
+    weak var inputStreamDelegate: InputStreamDelegate?
 
     required init(inputStream: NSInputStream, delegate: InputStreamDelegate?) {
         self.inputStream = inputStream
@@ -20,7 +20,6 @@ class InputStream: Stream {
     }
 
     func readData(maxLength: Int) -> NSData? {
-        print("read")
         let mutableData = NSMutableData()
         var buffer = [UInt8](count: maxLength, repeatedValue: 0)
         let len = inputStream.read(&buffer, maxLength: maxLength)

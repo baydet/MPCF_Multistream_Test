@@ -8,7 +8,7 @@ import MultipeerConnectivity
 
 let ksServiceName = "baydet-mltstrm"
 
-@objc class Server: NSObject, StreamService, MCNearbyServiceAdvertiserDelegate {
+class Server: NSObject, StreamService, MCNearbyServiceAdvertiserDelegate {
     private let streamer: Streamer
     private let advertiser: MCNearbyServiceAdvertiser
 
@@ -24,7 +24,7 @@ let ksServiceName = "baydet-mltstrm"
         print("started advertising \(streamer.peerID.displayName)")
     }
 
-    @objc func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession) -> Void) {
+    func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession) -> Void) {
         print("received invitation from peer \(peerID.displayName)")
         invitationHandler(true, streamer.session)
     }

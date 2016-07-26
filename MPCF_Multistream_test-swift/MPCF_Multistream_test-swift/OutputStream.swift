@@ -11,7 +11,7 @@ protocol OutputStreamDelegate: StreamDelegate {
 
 class OutputStream: Stream {
     private let outputStream: NSOutputStream
-    private weak var outputStreamDelegate: OutputStreamDelegate?
+    weak var outputStreamDelegate: OutputStreamDelegate?
 
     required init(outputStream: NSOutputStream, delegate: OutputStreamDelegate?) {
         self.outputStream = outputStream
@@ -20,7 +20,6 @@ class OutputStream: Stream {
     }
 
     func writeData(data: NSData) -> Int {
-        print("write")
         return outputStream.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
     }
 

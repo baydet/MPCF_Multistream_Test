@@ -10,16 +10,16 @@
 		D32FAFF61D46795D009B4A7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FAFF51D46795D009B4A7E /* AppDelegate.swift */; };
 		D32FB0001D46795D009B4A7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32FAFFE1D46795D009B4A7E /* LaunchScreen.storyboard */; };
 		D32FB00B1D467A16009B4A7E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */; };
-		FAADD0995CD819A9B5C40563 /* NSData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD932C030B6732CB61CE2 /* NSData+Ext.swift */; };
-		FAADD13E3C6FE737B8F1F2E4 /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3F4CCAEAA41E8EEC17D /* MCPeer+Ext.swift */; };
-		FAADD30E7F978942E0A163A1 /* OutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD7B93CC13082CEF220CA /* OutputStream.swift */; };
-		FAADD5AAA7CDFF293563E365 /* InputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD6195AF2AAE8B98F1447 /* InputStream.swift */; };
-		FAADD5C3DD004A9C6E9E6B78 /* TranslateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD7FF7A54C2B0D2AA016E /* TranslateDataSource.swift */; };
-		FAADD6FE84A1C9BB57B888A9 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD5823D0524D3CBA8A7DC /* Server.swift */; };
+		FAADD05EA55F12ED3A24A9F3 /* OutputDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3262738E7C156D02967 /* OutputDataSource.swift */; };
+		FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD0C76A2970EE024BFF57 /* InputStream.swift */; };
+		FAADD1D68BB3E292752C666A /* TranslateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */; };
+		FAADD2FDBD401B05837CCAE0 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD58EDDA1963322ADFE5D /* Server.swift */; };
+		FAADD6053C7ADD717A165CC6 /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */; };
 		FAADD799A98AC2EAD502F1E2 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3C49960AD25930C1604 /* Streamer.swift */; };
-		FAADD9440B9966A50439E676 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDFC5D48DF3495160A0BD /* Stream.swift */; };
-		FAADDBDFE077D0E4CA872EE9 /* OutputDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD280D4ACB3AA925CBCCD /* OutputDataSource.swift */; };
-		FAADDFA99CBC1F799DBAA4DF /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD35C94CC7D58FA11FDF5 /* Client.swift */; };
+		FAADD8C30C377E3AE2DB2BE0 /* NSData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */; };
+		FAADDD58941E164812115E2B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD19157F840F036484D21 /* Client.swift */; };
+		FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD076C3693CBA36D09601 /* OutputStream.swift */; };
+		FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1A0862ED54F894E8EAC /* Stream.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,17 +27,17 @@
 		D32FAFFF1D46795D009B4A7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D32FB0011D46795D009B4A7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		FAADD280D4ACB3AA925CBCCD /* OutputDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDataSource.swift; sourceTree = "<group>"; };
-		FAADD35C94CC7D58FA11FDF5 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		FAADD076C3693CBA36D09601 /* OutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStream.swift; sourceTree = "<group>"; };
+		FAADD0C76A2970EE024BFF57 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
+		FAADD19157F840F036484D21 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		FAADD1A0862ED54F894E8EAC /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
+		FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
+		FAADD3262738E7C156D02967 /* OutputDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDataSource.swift; sourceTree = "<group>"; };
 		FAADD3C49960AD25930C1604 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
-		FAADD3F4CCAEAA41E8EEC17D /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
-		FAADD5823D0524D3CBA8A7DC /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
-		FAADD6195AF2AAE8B98F1447 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
-		FAADD7B93CC13082CEF220CA /* OutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStream.swift; sourceTree = "<group>"; };
-		FAADD7FF7A54C2B0D2AA016E /* TranslateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslateDataSource.swift; sourceTree = "<group>"; };
-		FAADD932C030B6732CB61CE2 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
+		FAADD58EDDA1963322ADFE5D /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslateDataSource.swift; sourceTree = "<group>"; };
 		FAADDEA95707F9A0AD28F03E /* MPCF_Multistream_test-swift.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "MPCF_Multistream_test-swift.app"; path = "../../../../Library/Caches/AppCode2016.2/DerivedData/MPCF_Multistream_test-swift-fccjkoxnkegxfjarzfxyjamembal/Build/Products/Debug-iphoneos/MPCF_Multistream_test-swift.app"; sourceTree = "<group>"; };
-		FAADDFC5D48DF3495160A0BD /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,26 +63,24 @@
 		D32FAFF41D46795D009B4A7E /* MPCF_Multistream_test-swift */ = {
 			isa = PBXGroup;
 			children = (
-				D32FB0071D46798D009B4A7E /* MPC */,
+				D32FB0071D46798D009B4A7E /* MPC-Test */,
 				D32FAFF51D46795D009B4A7E /* AppDelegate.swift */,
 				D32FAFFE1D46795D009B4A7E /* LaunchScreen.storyboard */,
 				D32FB0011D46795D009B4A7E /* Info.plist */,
-				FAADDB13D46936CA635AE661 /* Stream */,
-				FAADD268A94C698648A8C5B5 /* DataSources */,
 				FAADD15766B8A475EDDF98E6 /* Products */,
 			);
 			path = "MPCF_Multistream_test-swift";
 			sourceTree = "<group>";
 		};
-		D32FB0071D46798D009B4A7E /* MPC */ = {
+		D32FB0071D46798D009B4A7E /* MPC-Test */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD35C94CC7D58FA11FDF5 /* Client.swift */,
-				FAADD5823D0524D3CBA8A7DC /* Server.swift */,
-				FAADD3F4CCAEAA41E8EEC17D /* MCPeer+Ext.swift */,
 				FAADD3C49960AD25930C1604 /* Streamer.swift */,
+				FAADDBC0065DE571FFE97BAC /* Stream */,
+				FAADDB1299646C0E2EEA5938 /* DataSources */,
+				FAADD81645A93B1C720DA05E /* MPC */,
 			);
-			name = MPC;
+			name = "MPC-Test";
 			sourceTree = "<group>";
 		};
 		FAADD15766B8A475EDDF98E6 /* Products */ = {
@@ -94,22 +92,32 @@
 			path = "../../MPCF_Multistream_test-swift";
 			sourceTree = "<group>";
 		};
-		FAADD268A94C698648A8C5B5 /* DataSources */ = {
+		FAADD81645A93B1C720DA05E /* MPC */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD280D4ACB3AA925CBCCD /* OutputDataSource.swift */,
-				FAADD7FF7A54C2B0D2AA016E /* TranslateDataSource.swift */,
-				FAADD932C030B6732CB61CE2 /* NSData+Ext.swift */,
+				FAADD58EDDA1963322ADFE5D /* Server.swift */,
+				FAADD19157F840F036484D21 /* Client.swift */,
+				FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */,
+			);
+			name = MPC;
+			sourceTree = "<group>";
+		};
+		FAADDB1299646C0E2EEA5938 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD3262738E7C156D02967 /* OutputDataSource.swift */,
+				FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */,
+				FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
 		};
-		FAADDB13D46936CA635AE661 /* Stream */ = {
+		FAADDBC0065DE571FFE97BAC /* Stream */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD7B93CC13082CEF220CA /* OutputStream.swift */,
-				FAADDFC5D48DF3495160A0BD /* Stream.swift */,
-				FAADD6195AF2AAE8B98F1447 /* InputStream.swift */,
+				FAADD076C3693CBA36D09601 /* OutputStream.swift */,
+				FAADD1A0862ED54F894E8EAC /* Stream.swift */,
+				FAADD0C76A2970EE024BFF57 /* InputStream.swift */,
 			);
 			name = Stream;
 			sourceTree = "<group>";
@@ -183,16 +191,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32FAFF61D46795D009B4A7E /* AppDelegate.swift in Sources */,
-				FAADDFA99CBC1F799DBAA4DF /* Client.swift in Sources */,
-				FAADD6FE84A1C9BB57B888A9 /* Server.swift in Sources */,
-				FAADD13E3C6FE737B8F1F2E4 /* MCPeer+Ext.swift in Sources */,
-				FAADD30E7F978942E0A163A1 /* OutputStream.swift in Sources */,
-				FAADD9440B9966A50439E676 /* Stream.swift in Sources */,
-				FAADD5AAA7CDFF293563E365 /* InputStream.swift in Sources */,
-				FAADDBDFE077D0E4CA872EE9 /* OutputDataSource.swift in Sources */,
-				FAADD5C3DD004A9C6E9E6B78 /* TranslateDataSource.swift in Sources */,
 				FAADD799A98AC2EAD502F1E2 /* Streamer.swift in Sources */,
-				FAADD0995CD819A9B5C40563 /* NSData+Ext.swift in Sources */,
+				FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */,
+				FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */,
+				FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */,
+				FAADD05EA55F12ED3A24A9F3 /* OutputDataSource.swift in Sources */,
+				FAADD1D68BB3E292752C666A /* TranslateDataSource.swift in Sources */,
+				FAADD8C30C377E3AE2DB2BE0 /* NSData+Ext.swift in Sources */,
+				FAADD2FDBD401B05837CCAE0 /* Server.swift in Sources */,
+				FAADDD58941E164812115E2B /* Client.swift in Sources */,
+				FAADD6053C7ADD717A165CC6 /* MCPeer+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

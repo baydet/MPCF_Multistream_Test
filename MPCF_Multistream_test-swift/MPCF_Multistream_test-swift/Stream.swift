@@ -20,7 +20,7 @@ extension StreamDelegate {
 class Stream: NSObject, NSStreamDelegate {
     private let stream: NSStream
     private var streamThread: NSThread?
-    private weak var delegate: StreamDelegate?
+    weak var delegate: StreamDelegate?
 
     init(stream: NSStream, delegate: StreamDelegate?) {
         self.stream = stream

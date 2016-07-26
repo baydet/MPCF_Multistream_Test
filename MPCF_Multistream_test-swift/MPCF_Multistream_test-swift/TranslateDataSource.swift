@@ -8,7 +8,10 @@ import Foundation
 class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     let kStreamReadMaxLength = 512
     private var buffer: [NSData] = []
+    private let receivedData = NSMutableData()
+    private var isBufferingFinished: Bool = false
 
+    var dataDidReceivedNotification: (NSData? -> Void)?
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         switch eventCode {
         case NSStreamEvent.HasSpaceAvailable:
@@ -19,8 +22,13 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     }
 
     func streamHasSpace(stream: OutputStream) {
-        while buffer.count == 0 {}
-        let data = buffer.removeAtIndex(0)
+        while self.buffer.count == 0 {
+            if isBufferingFinished {
+                stream.close()
+                return
+            }
+        }
+        let data = self.buffer.removeAtIndex(0)
         stream.writeData(data)
     }
     
@@ -29,12 +37,18 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
             return
         }
         buffer.append(data)
+        receivedData.appendData(data)
     }
     
     func streamDidOpen(stream: Stream) {        
     }
     
     func streamEndEncountered(stream: Stream) {
+        stream.close()
+        if stream is InputStream {
+            isBufferingFinished = true
+            dataDidReceivedNotification?(receivedData)
+        }
     }
     
 }
