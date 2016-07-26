@@ -59,11 +59,11 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     }
     
     func streamEndEncountered(stream: Stream) {
-        stream.close()
         if stream is InputStream {
             isBufferingFinished = true
             dataDidReceivedNotification?(receivedData)
         }
+        stream.close()
     }
     
 }
