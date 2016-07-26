@@ -14,16 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let streamsCount: UInt = 10
-        let dataLength: UInt = 1024 * 10
+        let streamsCount: UInt = 2
+        let dataLength: UInt = 1024 * 4
+
+        let validationBlock: StreamerCompletionBlock = { sData, rData, name -> Void in
+            if let sentData = sData, receivedData = rData where !receivedData.isEqualToData(sentData)  {
+                assert(false, "data is not equal \(name)")
+            } else {
+                print("data is equal \(name)")
+            }
+        }
 
         let isServer = NSString(string: NSProcessInfo.processInfo().arguments[2]).boolValue
         if isServer {
-            let server = Server(streamer: Streamer(streamsCount: streamsCount, dataLength: dataLength))
+            let server = Server(streamer: Streamer(streamsCount: streamsCount, dataLength: dataLength, streamTransferCompletion: validationBlock))
             server.startAdvertising()
             streamingService = server
         } else {
-            let client = Client(streamer: Streamer(streamsCount: streamsCount))
+            let client = Client(streamer: Streamer(streamsCount: streamsCount, dataLength: dataLength, streamTransferCompletion: validationBlock))
             client.startBrowsing()
             streamingService = client
         }
@@ -31,4 +39,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

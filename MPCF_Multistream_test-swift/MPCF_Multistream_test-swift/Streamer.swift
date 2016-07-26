@@ -13,6 +13,8 @@ protocol StreamService {
     init(streamer: Streamer)
 }
 
+typealias StreamerCompletionBlock = (sentData: NSData?, receivedData: NSData?, name: String) -> Void
+
 class Streamer: NSObject, MCSessionDelegate {
     private let retranslatePrefix = "retr_"
 
@@ -20,15 +22,18 @@ class Streamer: NSObject, MCSessionDelegate {
     let session: MCSession
     let streamsCount: UInt
     let dataLength: UInt
+
+    private let streamTransferCompletion: StreamerCompletionBlock?
     private var outputDataSources: [String : OutputDataSource] = [:]
     private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []
 
-    required init(peer: MCPeerID = MCPeerID.currentPeer(), streamsCount: UInt = 20, dataLength: UInt = 1024 * 1024 * 10) {
+    required init(peer: MCPeerID = MCPeerID.currentPeer(), streamsCount: UInt = 20, dataLength: UInt = 1024 * 1024 * 10, streamTransferCompletion: ((sentData: NSData?, receivedData: NSData?, streamName: String) -> Void)? = nil) {
         self.peerID = peer
         self.session = MCSession(peer: self.peerID)
         self.streamsCount = streamsCount
         self.dataLength = dataLength
+        self.streamTransferCompletion = streamTransferCompletion
         super.init()
         self.session.delegate = self
     }
@@ -82,14 +87,9 @@ class Streamer: NSObject, MCSessionDelegate {
         streams.append(inputStream)
         if name.containsString(retranslatePrefix) {
             let originalName = name.stringByReplacingOccurrencesOfString(retranslatePrefix, withString: "")
-            let data = outputDataSources[originalName]?.sentData
+            let sentData = outputDataSources[originalName]?.sentData
             inputProcessor.dataDidReceivedNotification = { receivedData in
-                if let sentData = data, receivedData = receivedData where !receivedData.isEqualToData(sentData)  {
-                    assert(false, "data is not equal \(originalName)")
-                } else {
-                    print("data is equal \(originalName)")
-                }
-                
+                self.streamTransferCompletion?(sentData: sentData, receivedData: receivedData, name: originalName)
             }
             
         }
