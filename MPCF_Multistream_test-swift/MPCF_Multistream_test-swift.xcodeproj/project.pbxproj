@@ -95,9 +95,9 @@
 		FAADD81645A93B1C720DA05E /* MPC */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD58EDDA1963322ADFE5D /* Server.swift */,
-				FAADD19157F840F036484D21 /* Client.swift */,
 				FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */,
+				FAADD19157F840F036484D21 /* Client.swift */,
+				FAADD58EDDA1963322ADFE5D /* Server.swift */,
 			);
 			name = MPC;
 			sourceTree = "<group>";
@@ -123,8 +123,8 @@
 		FAADDBC0065DE571FFE97BAC /* Stream */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD076C3693CBA36D09601 /* OutputStream.swift */,
 				FAADD1A0862ED54F894E8EAC /* Stream.swift */,
+				FAADD076C3693CBA36D09601 /* OutputStream.swift */,
 				FAADD0C76A2970EE024BFF57 /* InputStream.swift */,
 			);
 			name = Stream;

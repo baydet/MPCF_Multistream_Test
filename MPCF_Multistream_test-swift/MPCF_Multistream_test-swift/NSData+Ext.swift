@@ -8,7 +8,7 @@ import Foundation
 
 extension NSData {
     class func randomData(length: Int) -> NSData {
-        let bytes = [UInt32](count: length, repeatedValue: 0).map { _ in arc4random() }
-        return NSData(bytes: bytes, length: bytes.count * sizeof(UInt32))
+        let bytes = [UInt8](count: length, repeatedValue: 0).map { _ in arc4random() }
+        return NSData(bytes: bytes, length: bytes.count * sizeof(UInt8))
     }
 }
