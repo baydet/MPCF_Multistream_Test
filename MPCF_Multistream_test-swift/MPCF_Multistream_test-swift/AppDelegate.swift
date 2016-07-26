@@ -11,11 +11,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     private var streamingService: StreamService?
+    private var streamingService1: StreamService?
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let streamsCount: UInt = 20
-        let dataLength: Int = 1024 * 1024 * 3
+        let streamsCount: UInt = 5
+        let dataLength: Int = 1024 * 100//* 3
 
         let validationBlock: StreamerCompletionBlock = { sData, rData, name -> Void in
             if let sentData = sData, receivedData = rData where !receivedData.isEqualToData(sentData)  {

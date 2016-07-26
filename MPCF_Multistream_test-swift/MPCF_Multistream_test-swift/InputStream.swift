@@ -23,6 +23,8 @@ class InputStream: Stream {
         let mutableData = NSMutableData()
         var buffer = [UInt8](count: maxLength, repeatedValue: 0)
 
+        /*with while(inputStream.hasBytesAvailable) this code remains unstable. Some streams finishing successfully.
+        But others just hang and don't want to receive more hasBytesAvailable notifications from delegate*/
         let len = inputStream.read(&buffer, maxLength: buffer.count)
         if(len > 0){
             mutableData.appendBytes(&buffer, length: len)
