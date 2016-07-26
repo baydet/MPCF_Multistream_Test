@@ -7,7 +7,3 @@ import Foundation
 
 
 let ksServiceName = "baydet-mltstrm"
-
-let kStreamReadMaxLength = 512
-let kStreamWriteMaxLength = 512 * 8
-let kPacketLength = 1024 * 100

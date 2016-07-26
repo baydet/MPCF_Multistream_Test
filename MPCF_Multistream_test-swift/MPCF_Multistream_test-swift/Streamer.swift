@@ -14,6 +14,7 @@ protocol StreamService {
 }
 
 class Streamer: NSObject, MCSessionDelegate {
+    private let retranslatePrefix = "retr_"
 
     let peerID: MCPeerID
     let session: MCSession
@@ -30,7 +31,7 @@ class Streamer: NSObject, MCSessionDelegate {
         print("\(state) - \(peerID.displayName)")
         switch state {
         case .Connected:
-            startStreamingToPeer(peer: peerID)
+            startStreamingToPeer(peerID)
             break
         default:
             break
@@ -40,14 +41,26 @@ class Streamer: NSObject, MCSessionDelegate {
     private func startStreamingToPeer(peer: MCPeerID) {
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
+            createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: OutputDataSource())
 //            createOutputStream(name)
 
             //op
         }
     }
 
-    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+    private func createAndOpenOutputStream(withName name: String, toPeer peer: MCPeerID, outputDelegate: OutputStreamDelegate) -> OutputStream {
+        do {
+            let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
+            return OutputStream(outputStream: nsOutputStream, delegate: outputDelegate)
+        } catch let error {
+            assert(false, "cannot start stream: \(error)")
+        }
+    }
 
+    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        if streamName.containsString(retranslatePrefix) {
+
+        }
     }
 
 

@@ -10,8 +10,8 @@ class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
     private let streamer: Streamer
 
     required init(streamer: Streamer) {
-        super.init()
         self.streamer = streamer
+        super.init()
     }
 
     func startBrowsing() {
