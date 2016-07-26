@@ -5,8 +5,14 @@
 
 import Foundation
 
+func sync(lock: AnyObject, @noescape closure: () -> Void) {
+    objc_sync_enter(lock)
+    closure()
+    objc_sync_exit(lock)
+}
+
 class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
-    let kStreamReadMaxLength = 512
+    let readMaxLength = 512
     private var buffer: [NSData] = []
     private let receivedData = NSMutableData()
     private var isBufferingFinished: Bool = false
@@ -22,22 +28,27 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     }
 
     func streamHasSpace(stream: OutputStream) {
-        while self.buffer.count == 0 {
-            if isBufferingFinished {
-                stream.close()
-                return
-            }
+        while !(self.buffer.count > 0 || self.isBufferingFinished) {
+            NSRunLoop.currentRunLoop().runMode(NSRunLoopCommonModes, beforeDate: NSDate.distantFuture())
         }
-        let data = self.buffer.removeAtIndex(0)
-        stream.writeData(data)
+        if self.isBufferingFinished && self.buffer.count == 0 {
+            stream.close()
+            return
+        }
+        sync(self) {
+            let data = self.buffer.removeAtIndex(0)
+            stream.writeData(data)
+        }
     }
     
     func streamHasBytes(stream: InputStream) {
-        guard let data = stream.readData(kStreamReadMaxLength) else {
+        guard let data = stream.readData(self.readMaxLength) else {
             return
         }
-        buffer.append(data)
-        receivedData.appendData(data)
+        sync(self) {
+            self.buffer.append(data)
+            self.receivedData.appendData(data)
+        }
     }
     
     func streamDidOpen(stream: Stream) {        

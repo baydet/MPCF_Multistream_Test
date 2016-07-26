@@ -25,10 +25,8 @@ class InputStream: Stream {
         let len = inputStream.read(&buffer, maxLength: maxLength)
         if len > 0 {
             mutableData.appendBytes(&buffer, length: len)
-            return mutableData
-        } else {
-            return nil
         }
+        return mutableData
     }
     
     override func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {

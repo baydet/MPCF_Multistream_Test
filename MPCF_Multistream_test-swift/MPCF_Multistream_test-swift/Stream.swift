@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol StreamDelegate: class {
+protocol StreamDelegate: NSObjectProtocol {
     func streamDidOpen(stream: Stream)
     func streamEndEncountered(stream: Stream)
     func streamHasError(stream: Stream)
