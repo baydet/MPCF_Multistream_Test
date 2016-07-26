@@ -14,9 +14,9 @@
 		FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD0C76A2970EE024BFF57 /* InputStream.swift */; };
 		FAADD1D68BB3E292752C666A /* TranslateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */; };
 		FAADD2FDBD401B05837CCAE0 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD58EDDA1963322ADFE5D /* Server.swift */; };
-		FAADD6053C7ADD717A165CC6 /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */; };
-		FAADD799A98AC2EAD502F1E2 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3C49960AD25930C1604 /* Streamer.swift */; };
-		FAADD8C30C377E3AE2DB2BE0 /* NSData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */; };
+		FAADD560F4715987FC488399 /* NSData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */; };
+		FAADDA4254831DDEEEA90947 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */; };
+		FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */; };
 		FAADDD58941E164812115E2B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD19157F840F036484D21 /* Client.swift */; };
 		FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD076C3693CBA36D09601 /* OutputStream.swift */; };
 		FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1A0862ED54F894E8EAC /* Stream.swift */; };
@@ -31,11 +31,11 @@
 		FAADD0C76A2970EE024BFF57 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
 		FAADD19157F840F036484D21 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		FAADD1A0862ED54F894E8EAC /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
-		FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
-		FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
+		FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
 		FAADD3262738E7C156D02967 /* OutputDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDataSource.swift; sourceTree = "<group>"; };
-		FAADD3C49960AD25930C1604 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
 		FAADD58EDDA1963322ADFE5D /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
+		FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
 		FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslateDataSource.swift; sourceTree = "<group>"; };
 		FAADDEA95707F9A0AD28F03E /* MPCF_Multistream_test-swift.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "MPCF_Multistream_test-swift.app"; path = "../../../../Library/Caches/AppCode2016.2/DerivedData/MPCF_Multistream_test-swift-fccjkoxnkegxfjarzfxyjamembal/Build/Products/Debug-iphoneos/MPCF_Multistream_test-swift.app"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,10 +75,10 @@
 		D32FB0071D46798D009B4A7E /* MPC-Test */ = {
 			isa = PBXGroup;
 			children = (
-				FAADD3C49960AD25930C1604 /* Streamer.swift */,
 				FAADDBC0065DE571FFE97BAC /* Stream */,
 				FAADDB1299646C0E2EEA5938 /* DataSources */,
 				FAADD81645A93B1C720DA05E /* MPC */,
+				FAADD887AB322823FA67B7F5 /* Extensions */,
 			);
 			name = "MPC-Test";
 			sourceTree = "<group>";
@@ -97,9 +97,18 @@
 			children = (
 				FAADD58EDDA1963322ADFE5D /* Server.swift */,
 				FAADD19157F840F036484D21 /* Client.swift */,
-				FAADD2551CE160A088BD1F08 /* MCPeer+Ext.swift */,
+				FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */,
 			);
 			name = MPC;
+			sourceTree = "<group>";
+		};
+		FAADD887AB322823FA67B7F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */,
+				FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		FAADDB1299646C0E2EEA5938 /* DataSources */ = {
@@ -107,7 +116,6 @@
 			children = (
 				FAADD3262738E7C156D02967 /* OutputDataSource.swift */,
 				FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */,
-				FAADD2F771B0A75E53EE7AF2 /* NSData+Ext.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -191,16 +199,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D32FAFF61D46795D009B4A7E /* AppDelegate.swift in Sources */,
-				FAADD799A98AC2EAD502F1E2 /* Streamer.swift in Sources */,
 				FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */,
 				FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */,
 				FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */,
 				FAADD05EA55F12ED3A24A9F3 /* OutputDataSource.swift in Sources */,
 				FAADD1D68BB3E292752C666A /* TranslateDataSource.swift in Sources */,
-				FAADD8C30C377E3AE2DB2BE0 /* NSData+Ext.swift in Sources */,
 				FAADD2FDBD401B05837CCAE0 /* Server.swift in Sources */,
 				FAADDD58941E164812115E2B /* Client.swift in Sources */,
-				FAADD6053C7ADD717A165CC6 /* MCPeer+Ext.swift in Sources */,
+				FAADD560F4715987FC488399 /* NSData+Ext.swift in Sources */,
+				FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */,
+				FAADDA4254831DDEEEA90947 /* Streamer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

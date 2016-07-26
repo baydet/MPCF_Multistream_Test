@@ -25,6 +25,7 @@ class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         print("found peer \(peerID)")
         browser.invitePeer(peerID, toSession: self.streamer.session, withContext: nil, timeout: 30)
+        browser.stopBrowsingForPeers()
     }
 
     func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {

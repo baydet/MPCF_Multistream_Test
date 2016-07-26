@@ -27,6 +27,7 @@ class Server: NSObject, StreamService, MCNearbyServiceAdvertiserDelegate {
     func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession) -> Void) {
         print("received invitation from peer \(peerID.displayName)")
         invitationHandler(true, streamer.session)
+        advertiser.stopAdvertisingPeer()
     }
 
 }
