@@ -18,14 +18,17 @@ class Streamer: NSObject, MCSessionDelegate {
 
     let peerID: MCPeerID
     let session: MCSession
-    let streamsCount: Int = 5
+    let streamsCount: UInt
+    let dataLength: UInt
     private var outputDataSources: [String : OutputDataSource] = [:]
     private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []
 
-    required init(peer: MCPeerID = MCPeerID.currentPeer()) {
+    required init(peer: MCPeerID = MCPeerID.currentPeer(), streamsCount: UInt = 20, dataLength: UInt = 1024 * 1024 * 10) {
         self.peerID = peer
         self.session = MCSession(peer: self.peerID)
+        self.streamsCount = streamsCount
+        self.dataLength = dataLength
         super.init()
         self.session.delegate = self
     }
@@ -45,7 +48,7 @@ class Streamer: NSObject, MCSessionDelegate {
         print("start streaming")
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
-            let outputDataSource = OutputDataSource()
+            let outputDataSource = OutputDataSource(length: dataLength)
             outputDataSources[name] = outputDataSource
             createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
         }
@@ -82,9 +85,9 @@ class Streamer: NSObject, MCSessionDelegate {
             let data = outputDataSources[originalName]?.sentData
             inputProcessor.dataDidReceivedNotification = { receivedData in
                 if let sentData = data, receivedData = receivedData where !receivedData.isEqualToData(sentData)  {
-                    assert(false, "data is not equal")
+                    assert(false, "data is not equal \(originalName)")
                 } else {
-                    print("data is equal")
+                    print("data is equal \(originalName)")
                 }
                 
             }
