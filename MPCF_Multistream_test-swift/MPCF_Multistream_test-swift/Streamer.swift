@@ -18,7 +18,7 @@ class Streamer: NSObject, MCSessionDelegate {
 
     let peerID: MCPeerID
     let session: MCSession
-    let streamsCount: Int = 1
+    let streamsCount: Int = 5
     private var outputDataSources: [String : OutputDataSource] = [:]
     private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []

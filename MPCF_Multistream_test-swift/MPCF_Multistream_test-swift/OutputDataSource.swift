@@ -17,7 +17,7 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
     let length: Int
     private var sentLength: Int = 0
 
-    init(length: Int = 1024 * 10) {
+    init(length: Int = 1024 * 1000) {
         self.length = length
         mutableSentData = NSMutableData(capacity: length)
     }
