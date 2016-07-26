@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let streamsCount: UInt = 5
-        let dataLength: Int = 1024 * 100//* 3
+        let dataLength: Int = 1024 * 1024 * 3
 
         let validationBlock: StreamerCompletionBlock = { sData, rData, name -> Void in
             if let sentData = sData, receivedData = rData where !receivedData.isEqualToData(sentData)  {
