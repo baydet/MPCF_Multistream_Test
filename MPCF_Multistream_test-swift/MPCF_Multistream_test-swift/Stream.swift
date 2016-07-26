@@ -11,6 +11,12 @@ protocol StreamDelegate: class {
     func streamHasError(stream: Stream)
 }
 
+extension StreamDelegate {
+    func streamHasError(stream: Stream) {
+        print("error \(stream)")
+    }
+}
+
 class Stream: NSObject, NSStreamDelegate {
     private let stream: NSStream
     private var streamThread: NSThread?
@@ -48,10 +54,13 @@ class Stream: NSObject, NSStreamDelegate {
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         switch eventCode {
         case NSStreamEvent.OpenCompleted:
+            print("stream OpenCompleted")
             delegate?.streamDidOpen(self)
         case NSStreamEvent.EndEncountered:
+            print("stream EndEncountered")
             delegate?.streamEndEncountered(self)
         case NSStreamEvent.ErrorOccurred:
+            print("stream ErrorOccurred")
             delegate?.streamHasError(self)
         default:
             break

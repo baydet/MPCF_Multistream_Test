@@ -37,6 +37,4 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     func streamEndEncountered(stream: Stream) {
     }
     
-    func streamHasError(stream: Stream) {
-    }
 }

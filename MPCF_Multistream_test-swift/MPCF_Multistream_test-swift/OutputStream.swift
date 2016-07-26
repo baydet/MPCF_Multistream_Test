@@ -16,6 +16,7 @@ class OutputStream: Stream {
     required init(outputStream: NSOutputStream, delegate: OutputStreamDelegate?) {
         self.outputStream = outputStream
         super.init(stream: outputStream, delegate: delegate)
+        outputStreamDelegate = delegate
     }
 
     func writeData(data: NSData) -> Int {

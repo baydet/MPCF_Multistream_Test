@@ -16,6 +16,7 @@ class InputStream: Stream {
     required init(inputStream: NSInputStream, delegate: InputStreamDelegate?) {
         self.inputStream = inputStream
         super.init(stream: inputStream, delegate: delegate)
+        inputStreamDelegate = delegate
     }
 
     func readData(maxLength: Int) -> NSData? {

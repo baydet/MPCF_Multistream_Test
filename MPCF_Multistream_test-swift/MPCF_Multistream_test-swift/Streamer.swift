@@ -31,7 +31,7 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
-        print("\(state) - \(peerID.displayName)")
+        print("\(state.rawValue) - \(peerID.displayName)")
         switch state {
         case .Connected:
             startStreamingToPeer(peerID)
@@ -42,6 +42,7 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     private func startStreamingToPeer(peer: MCPeerID) {
+        print("start streaming")
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
             let outputDataSource = OutputDataSource()

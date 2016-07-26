@@ -22,6 +22,7 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
     }
 
     func streamHasSpace(stream: OutputStream) {
+        print("has space")
         if sentLength < length {
             var dataChunkLength = Int(arc4random_uniform(UInt32(kStreamWriteMaxLength - kStreamWriteMinLength))) + kStreamWriteMinLength
             if (sentLength + dataChunkLength > length) {
@@ -38,6 +39,5 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
 
     func streamDidOpen(stream: Stream) {}
     func streamEndEncountered(stream: Stream) {}
-    func streamHasError(stream: Stream) {}
 
 }
