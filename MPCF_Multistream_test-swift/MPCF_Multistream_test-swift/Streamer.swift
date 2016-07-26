@@ -19,9 +19,12 @@ class Streamer: NSObject, MCSessionDelegate {
     let peerID: MCPeerID
     let session: MCSession
     let streamsCount: Int = 20
+    private var outputDataSources: [String : OutputStreamDelegate] = [:]
+    private var inputDataSources: [String : InputStreamDelegate] = [:]
+    private var streams: [Stream] = []
 
     required init(peer: MCPeerID = MCPeerID.currentPeer()) {
-        self.peerID = peer;
+        self.peerID = peer
         self.session = MCSession(peer: self.peerID)
         super.init()
         self.session.delegate = self
@@ -41,26 +44,42 @@ class Streamer: NSObject, MCSessionDelegate {
     private func startStreamingToPeer(peer: MCPeerID) {
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
-            createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: OutputDataSource())
-//            createOutputStream(name)
+            let outputDataSource = OutputDataSource()
+            createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
+        }
+    }
 
-            //op
+    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        let inputProcessor = TranslateDataSource()
+        acceptAndOpenInputStream(stream, withName: streamName, inputProcessor: inputProcessor)
+        inputDataSources[streamName] = inputProcessor
+        if !streamName.containsString(retranslatePrefix) {
+            let retranslatedStreamName = retranslatePrefix + streamName
+            createAndOpenOutputStream(withName: retranslatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
         }
     }
 
     private func createAndOpenOutputStream(withName name: String, toPeer peer: MCPeerID, outputDelegate: OutputStreamDelegate) -> OutputStream {
         do {
             let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
-            return OutputStream(outputStream: nsOutputStream, delegate: outputDelegate)
+            let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate)
+            outputDataSources[name] = outputDelegate
+            stream.start()
+            streams.append(stream)
+            return stream
         } catch let error {
             assert(false, "cannot start stream: \(error)")
         }
     }
 
-    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        if streamName.containsString(retranslatePrefix) {
-
+    private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: InputStreamDelegate) -> InputStream {
+        let inputStream = InputStream(inputStream: stream, delegate: inputProcessor)
+        inputStream.start()
+        streams.append(inputStream)
+        if name.containsString(retranslatePrefix) {
+            //todo compare data on completion
         }
+        return inputStream
     }
 
 

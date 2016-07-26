@@ -6,10 +6,12 @@
 import Foundation
 import MultipeerConnectivity
 
+let ksServiceName = "baydet-mltstrm"
+
 class Server: NSObject, StreamService, MCNearbyServiceAdvertiserDelegate {
     private let streamer: Streamer
 
-    required init(streamer: Streamer) {
+    required init(streamer: Streamer = Streamer()) {
         self.streamer = streamer
         super.init()
     }

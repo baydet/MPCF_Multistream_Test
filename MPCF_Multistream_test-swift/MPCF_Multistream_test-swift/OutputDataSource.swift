@@ -9,7 +9,10 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
     let kStreamWriteMaxLength = 512 * 8
     let kStreamWriteMinLength = 512
 
-    let mutableSentData: NSMutableData?
+    private let mutableSentData: NSMutableData?
+    var sentData: NSData? {
+        return mutableSentData
+    }
     let length: Int
     private var sentLength: Int = 0
 
@@ -28,7 +31,7 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
             stream.writeData(data)
             mutableSentData?.appendData(data)
         } else {
-            //todo close stream
+            stream.close()
             //todo notify about end
         }
     }

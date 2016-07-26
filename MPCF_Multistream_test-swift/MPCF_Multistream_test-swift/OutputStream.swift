@@ -18,9 +18,9 @@ class OutputStream: Stream {
         super.init(stream: outputStream, delegate: delegate)
     }
 
-    func writeData(data: NSData) {
-        return
-//        self.outputStream.rea
+    func writeData(data: NSData) -> Int {
+        print("write")
+        return outputStream.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
     }
 
     override func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {

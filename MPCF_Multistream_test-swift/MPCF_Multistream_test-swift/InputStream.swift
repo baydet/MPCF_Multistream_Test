@@ -18,9 +18,17 @@ class InputStream: Stream {
         super.init(stream: inputStream, delegate: delegate)
     }
 
-    func readData() -> NSData {
-        return NSData()
-//        self.inputStream.rea
+    func readData(maxLength: Int) -> NSData? {
+        print("read")
+        let mutableData = NSMutableData()
+        var buffer = [UInt8](count: maxLength, repeatedValue: 0)
+        let len = inputStream.read(&buffer, maxLength: maxLength)
+        if len > 0 {
+            mutableData.appendBytes(&buffer, length: len)
+            return mutableData
+        } else {
+            return nil
+        }
     }
     
     override func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {

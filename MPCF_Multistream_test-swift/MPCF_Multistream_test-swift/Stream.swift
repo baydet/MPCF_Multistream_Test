@@ -41,16 +41,20 @@ class Stream: NSObject, NSStreamDelegate {
         streamThread?.start()
     }
 
+    func close() {
+        stream.close()
+    }
+
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         switch eventCode {
         case NSStreamEvent.OpenCompleted:
             delegate?.streamDidOpen(self)
         case NSStreamEvent.EndEncountered:
-            delegate?.streamEndEncountered(self);
+            delegate?.streamEndEncountered(self)
         case NSStreamEvent.ErrorOccurred:
             delegate?.streamHasError(self)
         default:
-            break;
+            break
         }
     }
 }

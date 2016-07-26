@@ -9,7 +9,7 @@ import MultipeerConnectivity
 class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
     private let streamer: Streamer
 
-    required init(streamer: Streamer) {
+    required init(streamer: Streamer = Streamer()) {
         self.streamer = streamer
         super.init()
     }
@@ -22,6 +22,7 @@ class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
     }
 
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        print("found peer \(peerID)")
         browser.invitePeer(peerID, toSession: self.streamer.session, withContext: nil, timeout: 30)
     }
 

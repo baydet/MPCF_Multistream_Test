@@ -19,7 +19,6 @@
 		FAADD799A98AC2EAD502F1E2 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3C49960AD25930C1604 /* Streamer.swift */; };
 		FAADD9440B9966A50439E676 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDFC5D48DF3495160A0BD /* Stream.swift */; };
 		FAADDBDFE077D0E4CA872EE9 /* OutputDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD280D4ACB3AA925CBCCD /* OutputDataSource.swift */; };
-		FAADDC9D8CBAACA3F0EC453E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD41959D10893C90EBBE6 /* Constants.swift */; };
 		FAADDFA99CBC1F799DBAA4DF /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD35C94CC7D58FA11FDF5 /* Client.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		FAADD35C94CC7D58FA11FDF5 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		FAADD3C49960AD25930C1604 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
 		FAADD3F4CCAEAA41E8EEC17D /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
-		FAADD41959D10893C90EBBE6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FAADD5823D0524D3CBA8A7DC /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		FAADD6195AF2AAE8B98F1447 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
 		FAADD7B93CC13082CEF220CA /* OutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStream.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 				FAADD35C94CC7D58FA11FDF5 /* Client.swift */,
 				FAADD5823D0524D3CBA8A7DC /* Server.swift */,
 				FAADD3F4CCAEAA41E8EEC17D /* MCPeer+Ext.swift */,
-				FAADD41959D10893C90EBBE6 /* Constants.swift */,
 				FAADD3C49960AD25930C1604 /* Streamer.swift */,
 			);
 			name = MPC;
@@ -189,7 +186,6 @@
 				FAADDFA99CBC1F799DBAA4DF /* Client.swift in Sources */,
 				FAADD6FE84A1C9BB57B888A9 /* Server.swift in Sources */,
 				FAADD13E3C6FE737B8F1F2E4 /* MCPeer+Ext.swift in Sources */,
-				FAADDC9D8CBAACA3F0EC453E /* Constants.swift in Sources */,
 				FAADD30E7F978942E0A163A1 /* OutputStream.swift in Sources */,
 				FAADD9440B9966A50439E676 /* Stream.swift in Sources */,
 				FAADD5AAA7CDFF293563E365 /* InputStream.swift in Sources */,
@@ -302,8 +298,8 @@
 		D32FB0051D46795D009B4A7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "MPCF_Multistream_test-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "by.baydet.MPCF-Multistream-test-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -313,8 +309,8 @@
 		D32FB0061D46795D009B4A7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "MPCF_Multistream_test-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "by.baydet.MPCF-Multistream-test-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -340,6 +336,7 @@
 				D32FB0061D46795D009B4A7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
