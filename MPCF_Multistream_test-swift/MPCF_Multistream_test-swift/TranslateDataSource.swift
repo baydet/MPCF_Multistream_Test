@@ -12,7 +12,7 @@ func sync(lock: AnyObject, @noescape closure: () -> Void) {
 }
 
 class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
-    let readMaxLength = 512
+    let readMaxLength: Int
     private var buffer: [NSData] = []
     private let receivedData = NSMutableData()
     private var isBufferingFinished: Bool = false
@@ -25,6 +25,10 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
         default:
             break
         }
+    }
+
+    init(readMaxLength: Int) {
+        self.readMaxLength = readMaxLength
     }
 
     func streamHasSpace(stream: OutputStream) {

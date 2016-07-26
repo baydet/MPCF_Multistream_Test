@@ -5,26 +5,29 @@
 
 import Foundation
 
+
 class OutputDataSource: NSObject, OutputStreamDelegate {
-    let kStreamWriteMaxLength: UInt = 512 * 8
-    let kStreamWriteMinLength: UInt = 512
+    let writeMaxLength: Int
+    let writeMinLength: Int
 
     var dataDidSentNotification: (NSData? -> Void)?
     private let mutableSentData: NSMutableData?
     var sentData: NSData? {
         return mutableSentData
     }
-    let length: UInt
-    private var sentLength: UInt = 0
+    let length: Int
+    private var sentLength: Int = 0
 
-    init(length: UInt) {
+    init(length: Int, writeMinLength: Int, writeMaxLength: Int) {
         self.length = length
         mutableSentData = NSMutableData(capacity: Int(length))
+        self.writeMinLength = writeMinLength
+        self.writeMaxLength = writeMaxLength
     }
 
     func streamHasSpace(stream: OutputStream) {
         if sentLength < length {
-            var dataChunkLength = UInt(arc4random_uniform(UInt32(kStreamWriteMaxLength - kStreamWriteMinLength))) + kStreamWriteMinLength
+            var dataChunkLength = Int(arc4random_uniform(UInt32(writeMaxLength - writeMinLength))) + writeMinLength
             if (sentLength + dataChunkLength > length) {
                 dataChunkLength = length - sentLength
             }

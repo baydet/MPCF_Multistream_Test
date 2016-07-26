@@ -49,6 +49,7 @@ class Stream: NSObject, NSStreamDelegate {
 
     func close() {
         stream.close()
+        NSThread.exit()
     }
 
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {

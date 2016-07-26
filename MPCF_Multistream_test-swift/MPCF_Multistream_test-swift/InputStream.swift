@@ -22,9 +22,12 @@ class InputStream: Stream {
     func readData(maxLength: Int) -> NSData? {
         let mutableData = NSMutableData()
         var buffer = [UInt8](count: maxLength, repeatedValue: 0)
-        let len = inputStream.read(&buffer, maxLength: maxLength)
-        if len > 0 {
-            mutableData.appendBytes(&buffer, length: len)
+        
+        while inputStream.hasBytesAvailable {
+            let len = inputStream.read(&buffer, maxLength: buffer.count)
+            if(len > 0){
+                mutableData.appendBytes(&buffer, length: len)
+            }
         }
         return mutableData
     }

@@ -14,6 +14,8 @@ protocol StreamService {
 }
 
 typealias StreamerCompletionBlock = (sentData: NSData?, receivedData: NSData?, name: String) -> Void
+typealias BufferSizes = (minWriteLength: Int, maxWriteLength: Int, maxReadLength: Int)
+let defaultBufferSize: BufferSizes = (minWriteLength: 512, maxWriteLength: 512 * 2, maxReadLength: 512 * 2)
 
 class Streamer: NSObject, MCSessionDelegate {
     private let retranslatePrefix = "retr_"
@@ -21,19 +23,21 @@ class Streamer: NSObject, MCSessionDelegate {
     let peerID: MCPeerID
     let session: MCSession
     let streamsCount: UInt
-    let dataLength: UInt
+    let dataLength: Int
+    let bufferSizes: BufferSizes
 
     private let streamTransferCompletion: StreamerCompletionBlock?
     private var outputDataSources: [String : OutputDataSource] = [:]
     private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []
 
-    required init(peer: MCPeerID = MCPeerID.currentPeer(), streamsCount: UInt = 20, dataLength: UInt = 1024 * 1024 * 10, streamTransferCompletion: ((sentData: NSData?, receivedData: NSData?, streamName: String) -> Void)? = nil) {
+    required init(peer: MCPeerID = MCPeerID.currentPeer(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 10, streamTransferCompletion: ((sentData: NSData?, receivedData: NSData?, streamName: String) -> Void)? = nil, bufferSizes: BufferSizes = defaultBufferSize) {
         self.peerID = peer
         self.session = MCSession(peer: self.peerID)
         self.streamsCount = streamsCount
         self.dataLength = dataLength
         self.streamTransferCompletion = streamTransferCompletion
+        self.bufferSizes = bufferSizes
         super.init()
         self.session.delegate = self
     }
@@ -53,14 +57,14 @@ class Streamer: NSObject, MCSessionDelegate {
         print("start streaming")
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_out#\(i)"
-            let outputDataSource = OutputDataSource(length: dataLength)
+            let outputDataSource = OutputDataSource(length: dataLength, writeMinLength: bufferSizes.minWriteLength, writeMaxLength: bufferSizes.maxWriteLength)
             outputDataSources[name] = outputDataSource
             createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
         }
     }
 
     func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        let inputProcessor = TranslateDataSource()
+        let inputProcessor = TranslateDataSource(readMaxLength: bufferSizes.maxReadLength)
         acceptAndOpenInputStream(stream, withName: streamName, inputProcessor: inputProcessor)
         inputDataSources[streamName] = inputProcessor
         if !streamName.containsString(retranslatePrefix) {
