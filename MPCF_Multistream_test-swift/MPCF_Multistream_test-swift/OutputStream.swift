@@ -12,9 +12,11 @@ protocol OutputStreamDelegate: StreamDelegate {
 class OutputStream: Stream {
     private let outputStream: NSOutputStream
     weak var outputStreamDelegate: OutputStreamDelegate?
+    private let makeRandomDelay: Bool
 
-    required init(outputStream: NSOutputStream, delegate: OutputStreamDelegate?) {
+    required init(outputStream: NSOutputStream, delegate: OutputStreamDelegate?, makeRandomDelay: Bool = true) {
         self.outputStream = outputStream
+        self.makeRandomDelay = makeRandomDelay
         super.init(stream: outputStream, delegate: delegate)
         outputStreamDelegate = delegate
     }
@@ -29,8 +31,11 @@ class OutputStream: Stream {
         if eventCode == NSStreamEvent.HasSpaceAvailable {
             /*delay delegate call. We will not come into racing between HasSpaceAvailable delegate calls because the 2nd
             and later delegate calls will occur only after performing write operation. */
-//            self.performSelector(#selector(callHasSpace), withObject: nil, afterDelay: drand48())
-            self.outputStreamDelegate?.streamHasSpace(self)
+            if (makeRandomDelay) {
+                self.performSelector(#selector(callHasSpace), withObject: nil, afterDelay: drand48())
+            } else {
+                self.outputStreamDelegate?.streamHasSpace(self)
+            }
         }
     }
 

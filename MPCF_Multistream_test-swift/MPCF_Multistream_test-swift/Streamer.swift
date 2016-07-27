@@ -25,6 +25,7 @@ class Streamer: NSObject, MCSessionDelegate {
     let streamsCount: UInt
     let dataLength: Int
     let bufferSizes: BufferSizes
+    let makeDelays: Bool
 
     private let streamValidationFailed: StreamNotificationBlock?
     private let streamRetranslationCompleted: StreamNotificationBlock?
@@ -32,7 +33,7 @@ class Streamer: NSObject, MCSessionDelegate {
     private var inputDataSources: [String : TranslateDataSource] = [:]
     private var streams: [Stream] = []
 
-    required init(peer: MCPeerID = createPeerWithDeviceName(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 10, streamValidationFailed: (StreamNotificationBlock)? = nil, streamRetranslationCompleted: (StreamNotificationBlock)? = nil, bufferSizes: BufferSizes = defaultBufferSize) {
+    required init(peer: MCPeerID = createPeerWithDeviceName(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 50, streamValidationFailed: (StreamNotificationBlock)? = nil, streamRetranslationCompleted: (StreamNotificationBlock)? = nil, bufferSizes: BufferSizes = defaultBufferSize, makeDelays: Bool = true) {
         self.peerID = peer
         self.session = MCSession(peer: self.peerID)
         self.streamsCount = streamsCount
@@ -40,6 +41,7 @@ class Streamer: NSObject, MCSessionDelegate {
         self.streamValidationFailed = streamValidationFailed
         self.streamRetranslationCompleted = streamRetranslationCompleted
         self.bufferSizes = bufferSizes
+        self.makeDelays = makeDelays
         super.init()
         self.session.delegate = self
     }
@@ -75,9 +77,6 @@ class Streamer: NSObject, MCSessionDelegate {
             createAndOpenOutputStream(withName: retranslatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
         } else {
             inputProcessor.receivingCompleted = { [weak self] in
-//                let originalName = streamName.stringByReplacingOccurrencesOfString(retranslatePrefix, withString: "")
-//                let validator = self!.outputDataSources[originalName]!.1
-//                logv
                 self?.streamRetranslationCompleted?(streamName: streamName)
             }
         }
@@ -86,7 +85,7 @@ class Streamer: NSObject, MCSessionDelegate {
     private func createAndOpenOutputStream(withName name: String, toPeer peer: MCPeerID, outputDelegate: OutputStreamDelegate) -> OutputStream {
         do {
             let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
-            let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate)
+            let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate, makeRandomDelay: self.makeDelays)
             stream.start()
             streams.append(stream)
             return stream

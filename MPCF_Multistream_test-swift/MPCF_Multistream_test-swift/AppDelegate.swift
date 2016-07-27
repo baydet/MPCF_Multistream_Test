@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let streamsCount: UInt = 20
-        let dataLength: Int = (1024 * 1024 * 1024) / Int(streamsCount)
+        let dataLength: Int = (1024 * 1024 * 100) / Int(streamsCount)
 
         let validationFailedBlock: StreamNotificationBlock = { name in
             assert(false, "data is not equal \(name)")
@@ -24,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let retranslationCompletedBlock: StreamNotificationBlock = { name in
             print("\(name) completed retranslation")
         }
-        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock))
+        let makeDelays = false
+
+        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock, makeDelays: makeDelays))
         server.startAdvertising()
 
-        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock))
+        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock, makeDelays: makeDelays))
         client.startBrowsing()
 
         return true
