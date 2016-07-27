@@ -26,6 +26,7 @@ class Streamer: NSObject, MCSessionDelegate {
     let dataLength: Int
     let bufferSizes: BufferSizes
     let makeDelays: Bool
+    private var globalCounter: Int = 0
 
     private let streamValidationFailed: StreamNotificationBlock?
     private let streamRetranslationCompleted: StreamNotificationBlock?
@@ -58,14 +59,15 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     private func startStreamingToPeer(peer: MCPeerID) {
-        print("start streaming")
+        print("start streaming \(peer)")
         for i in 0..<streamsCount {
-            let name = "\(self.peerID.displayName)_out#\(i)"
+            let name = "\(self.peerID.displayName)_\(globalCounter)_out#\(i)"
             let buffer = DataValidator()
             let outputDataSource = OutputDataSource(buffer: buffer, length: dataLength, writeMinLength: bufferSizes.minWriteLength, writeMaxLength: bufferSizes.maxWriteLength)
             outputDataSources[name] = (outputDataSource, buffer)
             createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
         }
+        globalCounter += 1
     }
 
     func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

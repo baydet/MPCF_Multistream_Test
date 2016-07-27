@@ -26,11 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let makeDelays = false
 
-        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
-        server.startAdvertising()
-
-        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
-        client.startBrowsing()
+        let isServer = NSString(string: NSProcessInfo.processInfo().arguments[2]).boolValue
+        if isServer {
+            server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
+            server.startAdvertising()
+        } else {
+            client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
+            client.startBrowsing()
+        }
 
         return true
     }
