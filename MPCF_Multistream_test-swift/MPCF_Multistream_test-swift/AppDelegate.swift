@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let streamsCount: UInt = 20
-        let dataLength: Int = (1024 * 1024 * 100) / Int(streamsCount)
+        let dataLength: Int = (1024 * 100) / Int(streamsCount)
 
         let validationFailedBlock: StreamNotificationBlock = { name in
             assert(false, "data is not equal \(name)")
@@ -26,14 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let makeDelays = false
 
-        let isServer = NSString(string: NSProcessInfo.processInfo().arguments[2]).boolValue
-        if isServer {
-            server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
-            server.startAdvertising()
-        } else {
-            client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
-            client.startBrowsing()
-        }
+        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
+        server.startAdvertising()
+
+        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
+        client.startBrowsing()
 
         return true
     }
