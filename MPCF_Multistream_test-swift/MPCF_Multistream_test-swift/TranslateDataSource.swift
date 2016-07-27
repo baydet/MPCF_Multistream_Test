@@ -5,12 +5,6 @@
 
 import Foundation
 
-func sync(lock: AnyObject, @noescape closure: () -> Void) {
-    objc_sync_enter(lock)
-    closure()
-    objc_sync_exit(lock)
-}
-
 class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     let readMaxLength: Int
     private var buffer: [NSData] = []

@@ -17,15 +17,22 @@ class DataValidator: DataBufferType, DataValidatorType {
     private let mutableData = NSMutableData()
 
     func appendData(data: NSData) {
-        mutableData.appendData(data)
+        sync(self){
+            mutableData.appendData(data)
+        }
     }
 
     func isReceivedDataValid(receivedData: NSData) -> Bool {
-        let range = NSRange(location: 0, length: receivedData.length)
-        guard mutableData.subdataWithRange(range).isEqualToData(receivedData) else {
-            return false
+        return sync(self) {
+            let range = NSRange(location: 0, length: receivedData.length)
+            let subdata = mutableData.subdataWithRange(range)
+            guard subdata.isEqualToData(receivedData) else {
+                print("received\n \(receivedData)")
+                print("actual\n \(mutableData)")
+                return false
+            }
+            mutableData.replaceBytesInRange(range, withBytes: nil, length: 0)
+            return true
         }
-        mutableData.replaceBytesInRange(range, withBytes: nil, length: 0)
-        return true
     }
 }
