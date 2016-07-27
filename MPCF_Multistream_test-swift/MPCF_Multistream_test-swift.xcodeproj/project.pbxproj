@@ -19,6 +19,7 @@
 		FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */; };
 		FAADDD58941E164812115E2B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD19157F840F036484D21 /* Client.swift */; };
 		FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD076C3693CBA36D09601 /* OutputStream.swift */; };
+		FAADDE519AB3950F28A9E9B6 /* DataComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */; };
 		FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1A0862ED54F894E8EAC /* Stream.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		FAADD076C3693CBA36D09601 /* OutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStream.swift; sourceTree = "<group>"; };
 		FAADD0C76A2970EE024BFF57 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
+		FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComparator.swift; sourceTree = "<group>"; };
 		FAADD19157F840F036484D21 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		FAADD1A0862ED54F894E8EAC /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				FAADD3262738E7C156D02967 /* OutputDataSource.swift */,
 				FAADDCF56F3726CB63A44C73 /* TranslateDataSource.swift */,
+				FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				FAADD560F4715987FC488399 /* NSData+Ext.swift in Sources */,
 				FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */,
 				FAADDA4254831DDEEEA90947 /* Streamer.swift in Sources */,
+				FAADDE519AB3950F28A9E9B6 /* DataComparator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

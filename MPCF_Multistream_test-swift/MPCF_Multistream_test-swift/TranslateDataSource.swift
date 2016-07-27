@@ -14,21 +14,13 @@ func sync(lock: AnyObject, @noescape closure: () -> Void) {
 class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     let readMaxLength: Int
     private var buffer: [NSData] = []
-    private let receivedData = NSMutableData()
     private var isBufferingFinished: Bool = false
+    private let dataValidator: ((NSData) -> Bool)?
+    var receivingCompleted: (() -> Void)?
 
-    var dataDidReceivedNotification: (NSData? -> Void)?
-    func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
-        switch eventCode {
-        case NSStreamEvent.HasSpaceAvailable:
-            break
-        default:
-            break
-        }
-    }
-
-    init(readMaxLength: Int) {
+    init(readMaxLength: Int, dataValidator:((NSData) -> Bool)? = nil) {
         self.readMaxLength = readMaxLength
+        self.dataValidator = dataValidator
     }
 
     func streamHasSpace(stream: OutputStream) {
@@ -53,7 +45,10 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
         }
         sync(self) {
             self.buffer.append(data)
-            self.receivedData.appendData(data)
+            if let dataValidator = dataValidator where dataValidator(data) == false {
+                isBufferingFinished = true
+                stream.close()
+            }
         }
     }
     
@@ -63,7 +58,7 @@ class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     func streamEndEncountered(stream: Stream) {
         if stream is InputStream {
             isBufferingFinished = true
-            dataDidReceivedNotification?(receivedData)
+            receivingCompleted?()
         }
         stream.close()
     }

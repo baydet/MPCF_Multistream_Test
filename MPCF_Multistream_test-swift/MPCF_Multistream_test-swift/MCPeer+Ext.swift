@@ -7,8 +7,6 @@ import Foundation
 import MultipeerConnectivity
 import UIKit
 
-extension MCPeerID {
-    class func currentPeer() -> MCPeerID {
-        return MCPeerID(displayName: UIDevice.currentDevice().name)
-    }
+func createPeerWithDeviceName(name: String = "") -> MCPeerID {
+    return MCPeerID(displayName: UIDevice.currentDevice().name + "_" + name)
 }

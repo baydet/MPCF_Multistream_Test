@@ -10,19 +10,15 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
     let writeMaxLength: Int
     let writeMinLength: Int
 
-    var dataDidSentNotification: (NSData? -> Void)?
-    private let mutableSentData: NSMutableData?
-    var sentData: NSData? {
-        return mutableSentData
-    }
+    let buffer: DataBufferType
     let length: Int
     private var sentLength: Int = 0
 
-    init(length: Int, writeMinLength: Int, writeMaxLength: Int) {
+    init(buffer: DataBufferType, length: Int, writeMinLength: Int, writeMaxLength: Int) {
         self.length = length
-        mutableSentData = NSMutableData(capacity: Int(length))
         self.writeMinLength = writeMinLength
         self.writeMaxLength = writeMaxLength
+        self.buffer = buffer
     }
 
     func streamHasSpace(stream: OutputStream) {
@@ -34,10 +30,9 @@ class OutputDataSource: NSObject, OutputStreamDelegate {
             let data = NSData.randomData(Int(dataChunkLength))
             stream.writeData(data)
             sentLength += dataChunkLength
-            mutableSentData?.appendData(data)
+            buffer.appendData(data)
         } else {
             stream.close()
-            dataDidSentNotification?(sentData)
         }
     }
 

@@ -10,32 +10,26 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    private var streamingService: StreamService?
-    private var streamingService1: StreamService?
+    private var server: Server!
+    private var client: Client!
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let streamsCount: UInt = 5
-        let dataLength: Int = 1024 * 1024 * 3
+        let streamsCount: UInt = 20
+        let dataLength: Int = (1024 * 1024) / Int(streamsCount)
 
-        let validationBlock: StreamerCompletionBlock = { sData, rData, name -> Void in
-            if let sentData = sData, receivedData = rData where !receivedData.isEqualToData(sentData)  {
-                assert(false, "data is not equal \(name)")
-            } else {
-                print("data is equal \(name)")
-            }
+        let validationFailedBlock: StreamNotificationBlock = { name in
+            assert(false, "data is not equal \(name)")
         }
+        let retranslationCompletedBlock: StreamNotificationBlock = { name in
+            print("\(name) completed retranslation")
+        }
+        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock))
+        server.startAdvertising()
 
-        let isServer = NSString(string: NSProcessInfo.processInfo().arguments[2]).boolValue
-        if isServer {
-            let server = Server(streamer: Streamer(streamsCount: streamsCount, dataLength: dataLength, streamTransferCompletion: validationBlock))
-            server.startAdvertising()
-            streamingService = server
-        } else {
-            let client = Client(streamer: Streamer(streamsCount: streamsCount, dataLength: dataLength, streamTransferCompletion: validationBlock))
-            client.startBrowsing()
-            streamingService = client
-        }
+        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock))
+        client.startBrowsing()
+
         return true
     }
 

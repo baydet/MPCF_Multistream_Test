@@ -29,7 +29,8 @@ class OutputStream: Stream {
         if eventCode == NSStreamEvent.HasSpaceAvailable {
             /*delay delegate call. We will not come into racing between HasSpaceAvailable delegate calls because the 2nd
             and later delegate calls will occur only after performing write operation. */
-            self.performSelector(#selector(callHasSpace), withObject: nil, afterDelay: drand48())
+//            self.performSelector(#selector(callHasSpace), withObject: nil, afterDelay: drand48())
+            self.outputStreamDelegate?.streamHasSpace(self)
         }
     }
 
