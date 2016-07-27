@@ -18,7 +18,7 @@ typealias BufferSizes = (minWriteLength: Int, maxWriteLength: Int, maxReadLength
 let defaultBufferSize: BufferSizes = (minWriteLength: 512, maxWriteLength: 512 * 2, maxReadLength: 512 * 2)
 
 class Streamer: NSObject, MCSessionDelegate {
-    private let retranslatePrefix = "retr_"
+    private let replicaPrefix = "repl_"
 
     let peerID: MCPeerID
     let session: MCSession
@@ -30,7 +30,7 @@ class Streamer: NSObject, MCSessionDelegate {
     private let streamValidationFailed: StreamNotificationBlock?
     private let streamRetranslationCompleted: StreamNotificationBlock?
     private var outputDataSources: [String : (OutputDataSource, DataValidator)] = [:]
-    private var inputDataSources: [String : TranslateDataSource] = [:]
+    private var inputDataSources: [String :ReplicateDataSource] = [:]
     private var streams: [Stream] = []
 
     required init(peer: MCPeerID = createPeerWithDeviceName(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 50, streamValidationFailed: (StreamNotificationBlock)? = nil, streamRetranslationCompleted: (StreamNotificationBlock)? = nil, bufferSizes: BufferSizes = defaultBufferSize, makeDelays: Bool = true) {
@@ -69,12 +69,12 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        let inputProcessor = TranslateDataSource(readMaxLength: bufferSizes.maxReadLength, dataValidator: validatorForStream(withName: streamName))
+        let inputProcessor = ReplicateDataSource(readMaxLength: bufferSizes.maxReadLength, dataValidator: validatorForStream(withName: streamName))
         acceptAndOpenInputStream(stream, withName: streamName, inputProcessor: inputProcessor)
         inputDataSources[streamName] = inputProcessor
         if !isRetranslatedStream(streamName) {
-            let retranslatedStreamName = retranslatePrefix + streamName
-            createAndOpenOutputStream(withName: retranslatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
+            let replicatedStreamName = replicaPrefix + streamName
+            createAndOpenOutputStream(withName: replicatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
         } else {
             inputProcessor.receivingCompleted = { [weak self] in
                 self?.streamRetranslationCompleted?(streamName: streamName)
@@ -94,7 +94,7 @@ class Streamer: NSObject, MCSessionDelegate {
         }
     }
 
-    private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: TranslateDataSource) -> InputStream {
+    private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: ReplicateDataSource) -> InputStream {
         let inputStream = InputStream(inputStream: stream, delegate: inputProcessor)
         inputStream.start()
         streams.append(inputStream)
@@ -103,7 +103,7 @@ class Streamer: NSObject, MCSessionDelegate {
 
     private func validatorForStream(withName name: String) -> (NSData -> Bool)? {
         if isRetranslatedStream(name) {
-            let originalName = name.stringByReplacingOccurrencesOfString(retranslatePrefix, withString: "")
+            let originalName = name.stringByReplacingOccurrencesOfString(replicaPrefix, withString: "")
             if let validator = outputDataSources[originalName]?.1 {
                 return { [weak self] data in
                     let res = validator.isReceivedDataValid(data)
@@ -118,7 +118,7 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     private func isRetranslatedStream(name: String) -> Bool {
-        return name.containsString(retranslatePrefix)
+        return name.containsString(replicaPrefix)
     }
 
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {}

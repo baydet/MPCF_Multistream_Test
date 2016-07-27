@@ -21,15 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let validationFailedBlock: StreamNotificationBlock = { name in
             assert(false, "data is not equal \(name)")
         }
-        let retranslationCompletedBlock: StreamNotificationBlock = { name in
-            print("\(name) completed retranslation")
+        let replicationCompletedBlock: StreamNotificationBlock = { name in
+            print("\(name) completed replication")
         }
         let makeDelays = false
 
-        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock, makeDelays: makeDelays))
+        server = Server(streamer: Streamer(peer: createPeerWithDeviceName("server"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
         server.startAdvertising()
 
-        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: retranslationCompletedBlock, makeDelays: makeDelays))
+        client = Client(streamer: Streamer(peer: createPeerWithDeviceName("client"), streamsCount: streamsCount, dataLength: dataLength, streamValidationFailed: validationFailedBlock, streamRetranslationCompleted: replicationCompletedBlock, makeDelays: makeDelays))
         client.startBrowsing()
 
         return true

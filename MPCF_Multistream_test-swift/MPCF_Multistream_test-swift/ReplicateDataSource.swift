@@ -5,7 +5,7 @@
 
 import Foundation
 
-class TranslateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
+class ReplicateDataSource: NSObject, OutputStreamDelegate, InputStreamDelegate {
     let readMaxLength: Int
     private var buffer: [NSData] = []
     private var isBufferingFinished: Bool = false
