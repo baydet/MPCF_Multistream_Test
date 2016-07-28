@@ -13,7 +13,7 @@ protocol StreamDelegate: NSObjectProtocol {
 
 extension StreamDelegate {
     func streamHasError(stream: Stream) {
-        print("error \(stream)")
+        date_print("error \(stream)")
     }
 }
 
@@ -59,7 +59,7 @@ class Stream: NSObject, NSStreamDelegate {
         case NSStreamEvent.EndEncountered:
             delegate?.streamEndEncountered(self)
         case NSStreamEvent.ErrorOccurred:
-            print("stream ErrorOccurred")
+            date_print("stream ErrorOccurred")
             delegate?.streamHasError(self)
         default:
             break

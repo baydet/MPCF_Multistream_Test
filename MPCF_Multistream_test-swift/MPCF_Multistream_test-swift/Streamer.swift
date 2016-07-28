@@ -10,7 +10,10 @@ import Foundation
 import MultipeerConnectivity
 
 protocol StreamService {
+    var streamer: Streamer { get }
     init(streamer: Streamer)
+    func start()
+    func stopDiscovering()
 }
 
 typealias StreamNotificationBlock = (streamName: String) -> Void
@@ -27,6 +30,10 @@ class Streamer: NSObject, MCSessionDelegate {
     let bufferSizes: BufferSizes
     let makeDelays: Bool
     private var globalCounter: Int = 0
+    var didStartedStreaming: () -> () = {  }
+    var didConnectToPeer: (Streamer, MCPeerID) -> () = { streamer, peer in
+        streamer.startStreamingToPeer(peer)
+    }
 
     private let streamValidationFailed: StreamNotificationBlock?
     private let streamRetranslationCompleted: StreamNotificationBlock?
@@ -34,7 +41,7 @@ class Streamer: NSObject, MCSessionDelegate {
     private var inputDataSources: [String :ReplicateDataSource] = [:]
     private var streams: [Stream] = []
 
-    required init(peer: MCPeerID = createPeerWithDeviceName(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 50, streamValidationFailed: (StreamNotificationBlock)? = nil, streamRetranslationCompleted: (StreamNotificationBlock)? = nil, bufferSizes: BufferSizes = defaultBufferSize, makeDelays: Bool = true) {
+    required init(peer: MCPeerID = createPeerWithDeviceName(), streamsCount: UInt = 20, dataLength: Int = 1024 * 1024 * 50, streamValidationFailed: (StreamNotificationBlock)? = nil, streamRetranslationCompleted: (StreamNotificationBlock)? = nil, bufferSizes: BufferSizes = defaultBufferSize, makeDelays: Bool = false) {
         self.peerID = peer
         self.session = MCSession(peer: self.peerID)
         self.streamsCount = streamsCount
@@ -48,26 +55,31 @@ class Streamer: NSObject, MCSessionDelegate {
     }
 
     func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
-        print("\(state.rawValue) - \(peerID.displayName)")
+        date_print("\(self.peerID.displayName) \(state.rawValue) - \(peerID.displayName)")
         switch state {
         case .Connected:
-            startStreamingToPeer(peerID)
+            didConnectToPeer(self, peerID)
             break
         default:
             break
         }
     }
 
-    private func startStreamingToPeer(peer: MCPeerID) {
-        print("start streaming \(peer)")
+    func startStreamingToPeer(peer: MCPeerID) {
+        date_print("start streaming \(peer)")
         for i in 0..<streamsCount {
             let name = "\(self.peerID.displayName)_\(globalCounter)_out#\(i)"
             let buffer = DataValidator()
             let outputDataSource = OutputDataSource(buffer: buffer, length: dataLength, writeMinLength: bufferSizes.minWriteLength, writeMaxLength: bufferSizes.maxWriteLength)
             outputDataSources[name] = (outputDataSource, buffer)
-            createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
+            do {
+                try createAndOpenOutputStream(withName: name, toPeer: peer, outputDelegate: outputDataSource)
+            } catch let error {
+                print("cannot start stream: \(error)")
+            }
         }
         globalCounter += 1
+        didStartedStreaming()
     }
 
     func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -76,24 +88,28 @@ class Streamer: NSObject, MCSessionDelegate {
         inputDataSources[streamName] = inputProcessor
         if !isRetranslatedStream(streamName) {
             let replicatedStreamName = replicaPrefix + streamName
-            createAndOpenOutputStream(withName: replicatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
+            do {
+                try createAndOpenOutputStream(withName: replicatedStreamName, toPeer: peerID, outputDelegate: inputProcessor)
+            } catch let error {
+                print("cannot start stream: \(error)")
+            }
         } else {
             inputProcessor.receivingCompleted = { [weak self] in
+                let origName = streamName.stringByReplacingOccurrencesOfString(self!.replicaPrefix, withString: "")
+                if !self!.outputDataSources[origName]!.1.validationCompleted {
+                    date_print("validation not finished \(origName)")
+                }
                 self?.streamRetranslationCompleted?(streamName: streamName)
             }
         }
     }
 
-    private func createAndOpenOutputStream(withName name: String, toPeer peer: MCPeerID, outputDelegate: OutputStreamDelegate) -> OutputStream {
-        do {
-            let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
-            let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate, makeRandomDelay: self.makeDelays)
-            stream.start()
-            streams.append(stream)
-            return stream
-        } catch let error {
-            assert(false, "cannot start stream: \(error)")
-        }
+    private func createAndOpenOutputStream(withName name: String, toPeer peer: MCPeerID, outputDelegate: OutputStreamDelegate) throws -> OutputStream {
+        let nsOutputStream = try session.startStreamWithName(name, toPeer: peer)
+        let stream = OutputStream(outputStream: nsOutputStream, delegate: outputDelegate, makeRandomDelay: self.makeDelays)
+        stream.start()
+        streams.append(stream)
+        return stream
     }
 
     private func acceptAndOpenInputStream(stream: NSInputStream, withName name: String, inputProcessor: ReplicateDataSource) -> InputStream {

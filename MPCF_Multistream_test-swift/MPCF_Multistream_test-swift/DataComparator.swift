@@ -15,6 +15,7 @@ protocol DataValidatorType {
 
 class DataValidator: DataBufferType, DataValidatorType {
     private let mutableData = NSMutableData()
+    private var validatedDataLength: Int = 0
 
     func appendData(data: NSData) {
         sync(self){
@@ -27,12 +28,18 @@ class DataValidator: DataBufferType, DataValidatorType {
             let range = NSRange(location: 0, length: receivedData.length)
             let subdata = mutableData.subdataWithRange(range)
             guard subdata.isEqualToData(receivedData) else {
-                print("received\n \(receivedData)")
-                print("actual\n \(mutableData)")
+                date_print("received\n \(receivedData)")
+                date_print("actual\n \(mutableData)")
                 return false
             }
             mutableData.replaceBytesInRange(range, withBytes: nil, length: 0)
+            validatedDataLength += receivedData.length
             return true
         }
+    }
+
+    var validationCompleted: Bool {
+        print("validated length \(validatedDataLength)")
+        return mutableData.length == 0
     }
 }

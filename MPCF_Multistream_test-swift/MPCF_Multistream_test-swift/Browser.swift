@@ -6,8 +6,8 @@
 import Foundation
 import MultipeerConnectivity
 
-class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
-    private let streamer: Streamer
+class Browser: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
+    let streamer: Streamer
     let browser: MCNearbyServiceBrowser
 
     required init(streamer: Streamer = Streamer()) {
@@ -16,14 +16,22 @@ class Client: NSObject, StreamService, MCNearbyServiceBrowserDelegate {
         super.init()
     }
 
+    func start() {
+        startBrowsing()
+    }
+
+    func stopDiscovering() {
+        browser.stopBrowsingForPeers()
+    }
+
     func startBrowsing() {
         browser.delegate = self
         browser.startBrowsingForPeers()
-        print("started browsing \(streamer.peerID.displayName)")
+        date_print("started browsing \(streamer.peerID.displayName)")
     }
 
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        print("found peer \(peerID)")
+        date_print("found peer \(peerID)")
         if !(peerID.displayName.containsString(UIKit.UIDevice.currentDevice().name)) {
             browser.invitePeer(peerID, toSession: self.streamer.session, withContext: nil, timeout: 30)
         }
