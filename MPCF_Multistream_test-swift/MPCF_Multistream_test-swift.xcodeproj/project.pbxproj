@@ -1,0 +1,368 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D32FAFF61D46795D009B4A7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32FAFF51D46795D009B4A7E /* AppDelegate.swift */; };
+		D32FB0001D46795D009B4A7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32FAFFE1D46795D009B4A7E /* LaunchScreen.storyboard */; };
+		D32FB00B1D467A16009B4A7E /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */; };
+		FAADD05EA55F12ED3A24A9F3 /* OutputDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD3262738E7C156D02967 /* OutputDataSource.swift */; };
+		FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD0C76A2970EE024BFF57 /* InputStream.swift */; };
+		FAADD1D68BB3E292752C666A /* ReplicateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCF56F3726CB63A44C73 /* ReplicateDataSource.swift */; };
+		FAADD2FDBD401B05837CCAE0 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD58EDDA1963322ADFE5D /* Advertiser.swift */; };
+		FAADD560F4715987FC488399 /* NSData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */; };
+		FAADDA4254831DDEEEA90947 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */; };
+		FAADDAA4A97F2D8B0B6B6164 /* Locking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDAF21254223FBDD7DA77 /* Locking.swift */; };
+		FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */; };
+		FAADDD58941E164812115E2B /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD19157F840F036484D21 /* Browser.swift */; };
+		FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD076C3693CBA36D09601 /* OutputStream.swift */; };
+		FAADDE519AB3950F28A9E9B6 /* DataComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */; };
+		FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAADD1A0862ED54F894E8EAC /* Stream.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D32FAFF51D46795D009B4A7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D32FAFFF1D46795D009B4A7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D32FB0011D46795D009B4A7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		FAADD076C3693CBA36D09601 /* OutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStream.swift; sourceTree = "<group>"; };
+		FAADD0C76A2970EE024BFF57 /* InputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStream.swift; sourceTree = "<group>"; };
+		FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataComparator.swift; sourceTree = "<group>"; };
+		FAADD19157F840F036484D21 /* Browser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+		FAADD1A0862ED54F894E8EAC /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Ext.swift"; sourceTree = "<group>"; };
+		FAADD3262738E7C156D02967 /* OutputDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputDataSource.swift; sourceTree = "<group>"; };
+		FAADD58EDDA1963322ADFE5D /* Advertiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
+		FAADDAF21254223FBDD7DA77 /* Locking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locking.swift; sourceTree = "<group>"; };
+		FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MCPeer+Ext.swift"; sourceTree = "<group>"; };
+		FAADDCF56F3726CB63A44C73 /* ReplicateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicateDataSource.swift; sourceTree = "<group>"; };
+		FAADDEA95707F9A0AD28F03E /* MPCF_Multistream_test-swift.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "MPCF_Multistream_test-swift.app"; path = "../../../../Library/Caches/AppCode2016.2/DerivedData/MPCF_Multistream_test-swift-fccjkoxnkegxfjarzfxyjamembal/Build/Products/Debug-iphoneos/MPCF_Multistream_test-swift.app"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D32FAFEF1D46795D009B4A7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32FB00B1D467A16009B4A7E /* MultipeerConnectivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D32FAFE91D46795D009B4A7E = {
+			isa = PBXGroup;
+			children = (
+				D32FB00A1D467A16009B4A7E /* MultipeerConnectivity.framework */,
+				D32FAFF41D46795D009B4A7E /* MPCF_Multistream_test-swift */,
+			);
+			sourceTree = "<group>";
+		};
+		D32FAFF41D46795D009B4A7E /* MPCF_Multistream_test-swift */ = {
+			isa = PBXGroup;
+			children = (
+				D32FB0071D46798D009B4A7E /* MPC-Test */,
+				D32FAFF51D46795D009B4A7E /* AppDelegate.swift */,
+				D32FAFFE1D46795D009B4A7E /* LaunchScreen.storyboard */,
+				D32FB0011D46795D009B4A7E /* Info.plist */,
+				FAADD15766B8A475EDDF98E6 /* Products */,
+			);
+			path = "MPCF_Multistream_test-swift";
+			sourceTree = "<group>";
+		};
+		D32FB0071D46798D009B4A7E /* MPC-Test */ = {
+			isa = PBXGroup;
+			children = (
+				FAADDBC0065DE571FFE97BAC /* Stream */,
+				FAADDB1299646C0E2EEA5938 /* DataSources */,
+				FAADD81645A93B1C720DA05E /* MPC */,
+				FAADD887AB322823FA67B7F5 /* Extensions */,
+			);
+			name = "MPC-Test";
+			sourceTree = "<group>";
+		};
+		FAADD15766B8A475EDDF98E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAADDEA95707F9A0AD28F03E /* MPCF_Multistream_test-swift.app */,
+			);
+			name = Products;
+			path = "../../MPCF_Multistream_test-swift";
+			sourceTree = "<group>";
+		};
+		FAADD81645A93B1C720DA05E /* MPC */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD8874BE0E1ADFEC402E3 /* Streamer.swift */,
+				FAADD19157F840F036484D21 /* Browser.swift */,
+				FAADD58EDDA1963322ADFE5D /* Advertiser.swift */,
+			);
+			name = MPC;
+			sourceTree = "<group>";
+		};
+		FAADD887AB322823FA67B7F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD1E143B9DF10A61B05D6 /* NSData+Ext.swift */,
+				FAADDCA31AC3A9BDF213FCC3 /* MCPeer+Ext.swift */,
+				FAADDAF21254223FBDD7DA77 /* Locking.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		FAADDB1299646C0E2EEA5938 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD3262738E7C156D02967 /* OutputDataSource.swift */,
+				FAADDCF56F3726CB63A44C73 /* ReplicateDataSource.swift */,
+				FAADD172E7F8A18EBAE62AD0 /* DataComparator.swift */,
+			);
+			name = DataSources;
+			sourceTree = "<group>";
+		};
+		FAADDBC0065DE571FFE97BAC /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				FAADD1A0862ED54F894E8EAC /* Stream.swift */,
+				FAADD076C3693CBA36D09601 /* OutputStream.swift */,
+				FAADD0C76A2970EE024BFF57 /* InputStream.swift */,
+			);
+			name = Stream;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D32FAFF11D46795D009B4A7E /* MPCF_Multistream_test-swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D32FB0041D46795D009B4A7E /* Build configuration list for PBXNativeTarget "MPCF_Multistream_test-swift" */;
+			buildPhases = (
+				D32FAFEE1D46795D009B4A7E /* Sources */,
+				D32FAFEF1D46795D009B4A7E /* Frameworks */,
+				D32FAFF01D46795D009B4A7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MPCF_Multistream_test-swift";
+			productName = "MPCF_Multistream_test-swift";
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D32FAFEA1D46795D009B4A7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = baydet;
+				TargetAttributes = {
+					D32FAFF11D46795D009B4A7E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = D32FAFED1D46795D009B4A7E /* Build configuration list for PBXProject "MPCF_Multistream_test-swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D32FAFE91D46795D009B4A7E;
+			productRefGroup = FAADD15766B8A475EDDF98E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D32FAFF11D46795D009B4A7E /* MPCF_Multistream_test-swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D32FAFF01D46795D009B4A7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32FB0001D46795D009B4A7E /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D32FAFEE1D46795D009B4A7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D32FAFF61D46795D009B4A7E /* AppDelegate.swift in Sources */,
+				FAADDDF6EB4A0132D77FE7C3 /* OutputStream.swift in Sources */,
+				FAADDFCCF103D40A2A66E1E8 /* Stream.swift in Sources */,
+				FAADD1A6E18B4ECB3E7C7DE7 /* InputStream.swift in Sources */,
+				FAADD05EA55F12ED3A24A9F3 /* OutputDataSource.swift in Sources */,
+				FAADD1D68BB3E292752C666A /* ReplicateDataSource.swift in Sources */,
+				FAADD2FDBD401B05837CCAE0 /* Advertiser.swift in Sources */,
+				FAADDD58941E164812115E2B /* Browser.swift in Sources */,
+				FAADD560F4715987FC488399 /* NSData+Ext.swift in Sources */,
+				FAADDC094415F7C68E64D0AB /* MCPeer+Ext.swift in Sources */,
+				FAADDA4254831DDEEEA90947 /* Streamer.swift in Sources */,
+				FAADDE519AB3950F28A9E9B6 /* DataComparator.swift in Sources */,
+				FAADDAA4A97F2D8B0B6B6164 /* Locking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D32FAFFE1D46795D009B4A7E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D32FAFFF1D46795D009B4A7E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D32FB0021D46795D009B4A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D32FB0031D46795D009B4A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D32FB0051D46795D009B4A7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "MPCF_Multistream_test-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.baydet.MPCF-Multistream-test-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D32FB0061D46795D009B4A7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "MPCF_Multistream_test-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.baydet.MPCF-Multistream-test-swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D32FAFED1D46795D009B4A7E /* Build configuration list for PBXProject "MPCF_Multistream_test-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32FB0021D46795D009B4A7E /* Debug */,
+				D32FB0031D46795D009B4A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D32FB0041D46795D009B4A7E /* Build configuration list for PBXNativeTarget "MPCF_Multistream_test-swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32FB0051D46795D009B4A7E /* Debug */,
+				D32FB0061D46795D009B4A7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D32FAFEA1D46795D009B4A7E /* Project object */;
+}
