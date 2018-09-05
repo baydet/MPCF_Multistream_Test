@@ -13,3 +13,5 @@ Test app contains several tests in `AppDelegate.swift` that are simulating diffe
  - `testConnectA1B1B2A2AndBroadcast` - simple test to ensure that we don't losing data using MPCF during relay.
  - `testOneMasterManySlavesConnection` - to ensure that it is available to manage multible browser's peers with the same advertiser's MCSession
  - `test3Peers` - this test proves possibility of having multiple MCSessions with the same serviceType but different MCPeerID. Each MCSession waiting to establising connection with another peer. After establishing these connections each peer tries open virtual socket. After all virtual sockets are created each session starts relay data through these virtual sockets.
+
+You can see my result logs for these tests [here](test%20results.pdf)
